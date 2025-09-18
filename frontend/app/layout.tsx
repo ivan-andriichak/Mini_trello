@@ -7,15 +7,15 @@ import {AuthProvider, useAuth} from "./components/AuthContext";
 
 
 function NavBar() {
-  const { user, logout, token } = useAuth();
+  const { user, logout, isLoading } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    if (!token && pathname !== '/login' && pathname !== '/register') {
+    if (!isLoading && !user && pathname !== '/login' && pathname !== '/register') {
       router.push('/login');
     }
-  }, [token, pathname, router]);
+  }, [isLoading, user, pathname, router]);
 
   return (
     <nav className="bg-gray-800 text-white p-4">
@@ -29,7 +29,7 @@ function NavBar() {
                 Boards
               </Link>
               <button
-                onClick={logout}
+                onClick={async () => { await logout(); router.push('/login'); }}
                 className="bg-red-500 p-2 rounded-md hover:bg-red-600"
               >
                 Logout

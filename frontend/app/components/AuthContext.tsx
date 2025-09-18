@@ -1,55 +1,70 @@
 'use client';
 
-import {createContext, ReactNode, useContext, useEffect, useState} from 'react';
-import { register as apiRegister, login as apiLogin, logout as apiLogout } from '../lib/api';
-import {User} from '../types';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { login as apiLogin, logout as apiLogout, register as apiRegister } from '../lib/api';
+import { User } from '../types';
 
 interface AuthContextType {
   user: User | null;
   login: (data: { email: string; password: string }) => Promise<void>;
-  register: (data: { email: string; password: string; name: string; surname: string }) => Promise<void>;
-  logout: () => void;
+  register: (data: { email: string; password: string; name: string; surname: string }) => Promise<User | null>;
+  logout: () => Promise<void>;
+  isLoading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const checkAuth = async () => {
       try {
-        const res = await fetch('http://localhost:5000/auth/me', { credentials: 'include' });
-        if (res.ok) {
-          setUser(await res.json());
+        const response = await fetch('http://localhost:5000/auth/me', {
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          setUser(null);
         }
-      } catch (e) {
-        console.error(e);
+      } catch (error) {
+        console.log('Auth check failed:', error);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
     };
-    void fetchUser();
+    void checkAuth();
   }, []);
 
-  const login = async (data: { email: string; password: string }) => {
-    await apiLogin(data);
-    const userResponse = await apiLogin(data);
-    setUser(userResponse.user);
+  const register = async (data: { email: string; password: string; name: string; surname: string }) => {
+    const response = await apiRegister(data);
+    // apiRegister returns { user, tokens }
+    setUser(response.user);
+    return response.user;
   };
 
-  const register = async (data: { email: string; password: string; name: string; surname: string }) => {
-    await apiRegister(data);
-    const userResponse = await apiRegister(data);
-    setUser(userResponse.user);
+  const login = async (data: { email: string; password: string }) => {
+    const response = await apiLogin(data);
+    setUser(response.user);
   };
 
   const logout = async () => {
-    await apiLogout();
-    setUser(null);
-    localStorage.removeItem('user');
+    try {
+      await apiLogout();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      setUser(null);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
@@ -57,6 +72,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within an AuthProvider');
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
   return context;
 };

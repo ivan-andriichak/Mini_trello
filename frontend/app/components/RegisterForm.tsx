@@ -1,6 +1,6 @@
 'use client';
 
-import {useState} from 'react';
+import {FormEvent, useState} from 'react';
 import {useAuth} from './AuthContext';
 import {useRouter} from 'next/navigation';
 
@@ -13,7 +13,7 @@ export default function RegisterForm() {
   const { register } = useAuth();
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       await register({ email, password, name, surname });

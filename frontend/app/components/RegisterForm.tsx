@@ -7,8 +7,8 @@ import {useRouter} from 'next/navigation';
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
   const [error, setError] = useState('');
   const { register } = useAuth();
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      await register({ email, password, name, surname });
+      await register({ email, password, name });
       router.push('/boards');
     } catch (err) {
       setError('Registration failed');
@@ -43,12 +43,22 @@ export default function RegisterForm() {
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
           <input
             id="password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-24 relative"
             required
           />
+          <div className="mt-3 flex items-center">
+            <input
+              id="show-password"
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+              className="mr-1"
+            />
+            <label htmlFor="show-password" className="text-xs text-gray-600 select-none">Show password</label>
+          </div>
         </div>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
@@ -57,17 +67,6 @@ export default function RegisterForm() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="surname" className="block text-sm font-medium text-gray-700">Surname</label>
-          <input
-            id="surname"
-            type="text"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
             className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             required
           />

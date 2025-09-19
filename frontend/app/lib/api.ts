@@ -19,7 +19,7 @@ api.interceptors.response.use(
   }
 );
 
-export const register = async (data: { email: string; password: string; name: string; surname: string }) => {
+export const register = async (data: { email: string; password: string; name: string}) => {
   const response = await api.post<AuthResponse>('/auth/register', data);
   return response.data;
 };

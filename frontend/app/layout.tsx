@@ -80,11 +80,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
     <body>
-    <AuthProvider>
-      <NavBar />
-      {children}
-    </AuthProvider>
-    </body>
+    <div className="w-full max-full mx-auto bg-gray-100">
+      <AuthProvider>
+        <NavBar/>
+        {children}
+      </AuthProvider>
+    </div>
+      </body>
     </html>
   );
 }

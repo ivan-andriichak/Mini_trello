@@ -95,7 +95,7 @@ export default function Board({ boardId }: { boardId: number }) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4  bg-gray-100 h-full">
+    <div className="w-full max-w-7xl mx-auto p-4 max-h-600 ">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
       {columns.length < 4 && (
         <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">

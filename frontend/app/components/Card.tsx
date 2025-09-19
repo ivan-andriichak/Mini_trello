@@ -30,6 +30,7 @@ export default function CardComponent({
     e.preventDefault();
     setIsSaving(true);
     try {
+      // use current card.columnId (more reliable)
       const updated = await updateCard(boardId, card.columnId, card.id, { title, description });
       onUpdate?.(updated);
       setIsEditing(false);
@@ -46,6 +47,7 @@ export default function CardComponent({
     try {
       await deleteCard(boardId, card.columnId, card.id);
       onDelete?.(card.id);
+      // do NOT call onUpdate with the same object (was causing confusion)
     } catch (err) {
       console.error('Failed to delete card:', err);
     } finally {

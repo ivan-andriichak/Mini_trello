@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {AuthResponse, Board, Card, Column} from '../types';
 
-
 const api = axios.create({
   baseURL: 'http://localhost:5000',
   withCredentials: true,
@@ -10,6 +9,14 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // log more info for debugging 404s (helps see server body)
+    if (error?.response) {
+      console.error('API error response:', {
+        url: error.config?.url,
+        status: error.response.status,
+        data: error.response.data,
+      });
+    }
     if (error.response?.status === 401 && !error.config.sent) {
       error.config.sent = true;
       await refresh();

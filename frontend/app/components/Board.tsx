@@ -11,7 +11,7 @@ export default function Board({ boardId }: { boardId: number }) {
   const [newColumnTitle, setNewColumnTitle] = useState('');
   const [newColumnOrder, setNewColumnOrder] = useState(0);
 
-  const fetchColumns = (async () => {
+  const fetchColumns = React.useCallback(async () => {
     try {
       const data = await getColumns(boardId);
       const normalizedColumns = data.map((col) => ({ ...col, cards: col.cards || [] }));
@@ -19,10 +19,10 @@ export default function Board({ boardId }: { boardId: number }) {
     } catch (err) {
       console.error('Error fetching columns:', err);
     }
-  });
+  }, [boardId]);
 
   useEffect(() => {
-   void fetchColumns();
+    void fetchColumns();
   }, [boardId, fetchColumns]);
 
   const handleCreateColumn = async (e: React.FormEvent) => {
@@ -108,28 +108,34 @@ export default function Board({ boardId }: { boardId: number }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-green-50 min-h-screen">
+    <div className="w-full max-w-7xl mx-auto p-4 bg-green-50 ">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
-      <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
-        <input
-          type="text"
-          value={newColumnTitle}
-          onChange={(e) => setNewColumnTitle(e.target.value)}
-          placeholder="New column title"
-          className="flex-1 border border-gray-300 rounded-md p-2"
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-          Create Column
-        </button>
-      </form>
+      {columns.length < 4 && (
+        <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
+          <input
+            type="text"
+            value={newColumnTitle}
+            onChange={(e) => setNewColumnTitle(e.target.value)}
+            placeholder="New column title"
+            className="flex-1 border border-gray-300 rounded-md p-2"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+          >
+            Create Column
+          </button>
+        </form>
+      )}
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="flex gap-4 overflow-x-auto">
+        <div className="flex gap-4 justify-center w-full">
           {columns.map((column) => (
             <ColumnComponent
               key={column.id}
               column={column}
               boardId={boardId}
               onDelete={handleDeleteColumn}
+              onRefresh={fetchColumns}
             />
           ))}
         </div>

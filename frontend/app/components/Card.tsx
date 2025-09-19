@@ -30,7 +30,6 @@ export default function CardComponent({
     e.preventDefault();
     setIsSaving(true);
     try {
-      // use current card.columnId (more reliable)
       const updated = await updateCard(boardId, card.columnId, card.id, { title, description });
       onUpdate?.(updated);
       setIsEditing(false);

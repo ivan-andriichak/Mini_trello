@@ -1,37 +1,35 @@
 'use client';
 
-import {FormEvent, useEffect, useState} from 'react';
-import { Droppable } from '@hello-pangea/dnd';
-import { Column as ColumnType, Card as CardType } from '../types';
-import { updateColumn, createCard } from '../lib/api';
+import {FormEvent, useState} from 'react';
+import {Droppable} from '@hello-pangea/dnd';
+import {Column as ColumnType} from '../types';
+import {createCard, updateColumn} from '../lib/api';
 import CardComponent from './Card';
 
 export default function ColumnComponent({
                                           column,
                                           boardId,
                                           onDelete,
+                                          onRefresh,
                                         }: {
   column: ColumnType;
   boardId: number;
   onDelete: (columnId: number) => void;
+  onRefresh?: () => void;
 }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editTitle, setEditTitle] = useState(column.title);
-  const [cards, setCards] = useState<CardType[]>(column.cards || []);
   const [newCardTitle, setNewCardTitle] = useState('');
   const [newCardDescription, setNewCardDescription] = useState('');
   const [newCardOrder, setNewCardOrder] = useState(0);
   const [isCreatingCard, setIsCreatingCard] = useState(false);
-
-  useEffect(() => {
-    setCards(column.cards || []);
-  }, [column.cards]);
 
   const handleEditColumn = async () => {
     try {
       const updated = await updateColumn(boardId, column.id, { title: editTitle });
       setEditTitle(updated.title);
       setIsEditModalOpen(false);
+      onRefresh?.();
     } catch (err) {
       console.error('Failed to update column:', err);
     }
@@ -46,12 +44,12 @@ export default function ColumnComponent({
     if (!newCardTitle) return;
     setIsCreatingCard(true);
     try {
-      const created = await createCard(boardId, column.id, {
+      await createCard(boardId, column.id, {
         title: newCardTitle,
         description: newCardDescription,
         order: newCardOrder,
       });
-      setCards((prev) => [...prev, created]);
+      onRefresh?.();
       setNewCardTitle('');
       setNewCardDescription('');
       setNewCardOrder(0);
@@ -62,16 +60,8 @@ export default function ColumnComponent({
     }
   };
 
-  const handleCardDelete = (cardId: number) => {
-    setCards((prev) => prev.filter((c) => c && c.id !== cardId));
-  };
-
-  const handleCardUpdate = (updatedCard: CardType) => {
-    setCards((prev) => prev.map((c) => (c && c.id === updatedCard.id ? updatedCard : c)));
-  };
-
   return (
-    <div className="bg-transparent p-4 rounded-md w-64 border border-gray-300 shadow-md flex flex-col justify-between max-h-full">
+    <div className="bg-transparent p-4 rounded-md border border-gray-300 shadow-md flex flex-col justify-between ">
       <div>
         <div className="flex justify-between items-center mb-2">
           <h3 className="text-lg font-semibold text-gray-800">{editTitle}</h3>
@@ -97,17 +87,17 @@ export default function ColumnComponent({
               {...provided.droppableProps}
               className="min-h-[500px] space-y-2 mb-2"
             >
-              {cards
+              {(column.cards || [])
                 .filter(Boolean)
                 .map((card, index) => (
                   <CardComponent
-                    key={card!.id}
-                    card={card!}
+                    key={card.id}
+                    card={card}
                     index={index}
                     boardId={boardId}
                     columnId={column.id}
-                    onDelete={handleCardDelete}
-                    onUpdate={handleCardUpdate}
+                    onDelete={() => onRefresh?.()}
+                    onUpdate={() => onRefresh?.()}
                   />
                 ))}
               {provided.placeholder}
@@ -142,7 +132,7 @@ export default function ColumnComponent({
         </div>
       </form>
       {isEditModalOpen && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-25">
+ <div className="fixed inset-0 z-10 flex items-center justify-center bg-yellow-900/80">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">
             <h3 className="text-lg font-medium leading-6 text-gray-900 mb-2">Edit Column</h3>
             <div className="mb-4">

@@ -90,7 +90,7 @@ export default function BoardList() {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditBoard(board.id)}
-                          className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600"
+                          className="bg-gray-300 text-white p-0.5 rounded-md hover:bg-green-600"
                         >
                           Save
                         </button>

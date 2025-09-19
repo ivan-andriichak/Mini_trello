@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import { Droppable } from '@hello-pangea/dnd';
 import { Column as ColumnType, Card as CardType } from '../types';
 import { updateColumn, createCard } from '../lib/api';
@@ -41,7 +41,7 @@ export default function ColumnComponent({
     onDelete(column.id);
   };
 
-  const handleCreateCard = async (e?: React.FormEvent) => {
+  const handleCreateCard = async (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!newCardTitle) return;
     setIsCreatingCard(true);
@@ -71,50 +71,51 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="bg-gray-100 p-4 rounded-md w-64 flex-shrink-0">
-      <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-semibold text-gray-800">{editTitle}</h3>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setIsEditModalOpen(true)}
-            className="text-gray-300 hover:text-yellow-600"
-          >
-            Edit
-          </button>
-          <button
-            onClick={handleDeleteColumn}
-            className="text-gray-300 hover:text-red-600"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-      <Droppable droppableId={String(column.id)}>
-        {(provided) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            className="min-h-[100px] space-y-2 mb-2"
-          >
-            {cards
-              .filter(Boolean)
-              .map((card, index) => (
-                <CardComponent
-                  key={card!.id}
-                  card={card!}
-                  index={index}
-                  boardId={boardId}
-                  columnId={column.id}
-                  onDelete={handleCardDelete}
-                  onUpdate={handleCardUpdate}
-                />
-              ))}
-            {provided.placeholder}
+    <div className="bg-transparent p-4 rounded-md w-64 border border-gray-300 shadow-md flex flex-col justify-between max-h-full">
+      <div>
+        <div className="flex justify-between items-center mb-2">
+          <h3 className="text-lg font-semibold text-gray-800">{editTitle}</h3>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setIsEditModalOpen(true)}
+              className="text-gray-300 hover:text-yellow-600"
+            >
+              Edit
+            </button>
+            <button
+              onClick={handleDeleteColumn}
+              className="text-gray-300 hover:text-red-600"
+            >
+              Delete
+            </button>
           </div>
-        )}
-      </Droppable>
-
-      <form onSubmit={handleCreateCard} className="space-y-2">
+        </div>
+        <Droppable droppableId={String(column.id)}>
+          {(provided) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className="min-h-[500px] space-y-2 mb-2"
+            >
+              {cards
+                .filter(Boolean)
+                .map((card, index) => (
+                  <CardComponent
+                    key={card!.id}
+                    card={card!}
+                    index={index}
+                    boardId={boardId}
+                    columnId={column.id}
+                    onDelete={handleCardDelete}
+                    onUpdate={handleCardUpdate}
+                  />
+                ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
+      <form onSubmit={handleCreateCard} className="space-y-2 mt-2">
         <input
           type="text"
           value={newCardTitle}
@@ -131,13 +132,6 @@ export default function ColumnComponent({
           className="w-full border border-gray-300 rounded-md p-1"
         />
         <div className="flex gap-2">
-          <input
-            type="number"
-            value={newCardOrder}
-            onChange={(e) => setNewCardOrder(+e.target.value)}
-            placeholder="Order"
-            className="w-20 border border-gray-300 rounded-md p-1"
-          />
           <button
             type="submit"
             disabled={isCreatingCard}
@@ -147,7 +141,6 @@ export default function ColumnComponent({
           </button>
         </div>
       </form>
-
       {isEditModalOpen && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-25">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl">

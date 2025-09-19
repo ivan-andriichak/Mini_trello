@@ -1,9 +1,9 @@
 'use client';
 
-import React, {useCallback, useEffect, useState} from 'react';
-import { DragDropContext, DropResult } from '@hello-pangea/dnd';
-import { createColumn, getColumns, updateCard, deleteColumn } from '../lib/api';
-import { Column } from '../types';
+import React, {useEffect, useState} from 'react';
+import {DragDropContext, DropResult} from '@hello-pangea/dnd';
+import {createColumn, deleteColumn, getColumns, updateCard} from '../lib/api';
+import {Column} from '../types';
 import ColumnComponent from './Column';
 
 export default function Board({ boardId }: { boardId: number }) {
@@ -22,7 +22,7 @@ export default function Board({ boardId }: { boardId: number }) {
   });
 
   useEffect(() => {
-    void fetchColumns();
+   void fetchColumns();
   }, [boardId, fetchColumns]);
 
   const handleCreateColumn = async (e: React.FormEvent) => {
@@ -108,7 +108,7 @@ export default function Board({ boardId }: { boardId: number }) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="max-w-7xl mx-auto p-4 bg-green-50 min-h-screen">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
       <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
         <input
@@ -117,13 +117,6 @@ export default function Board({ boardId }: { boardId: number }) {
           onChange={(e) => setNewColumnTitle(e.target.value)}
           placeholder="New column title"
           className="flex-1 border border-gray-300 rounded-md p-2"
-        />
-        <input
-          type="number"
-          value={newColumnOrder}
-          onChange={(e) => setNewColumnOrder(+e.target.value)}
-          placeholder="Order"
-          className="w-20 border border-gray-300 rounded-md p-2"
         />
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
           Create Column

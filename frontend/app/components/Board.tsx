@@ -55,6 +55,9 @@ export default function Board({ boardId }: { boardId: number }) {
 
     if (source.droppableId === destination.droppableId) {
       const newCards = Array.from(sourceColumn.cards || []);
+      // guard: ensure source.index valid
+      if (source.index < 0 || source.index >= newCards.length) return;
+
       const [reorderedCard] = newCards.splice(source.index, 1);
       newCards.splice(destination.index, 0, reorderedCard);
 
@@ -65,16 +68,28 @@ export default function Board({ boardId }: { boardId: number }) {
         )
       );
 
-      await updateCard(boardId, sourceColumn.id, +draggableId, { order: destination.index });
+      try {
+        await updateCard(boardId, sourceColumn.id, +draggableId, { order: destination.index });
+      } catch (err) {
+        console.error('Failed to update card order:', err);
+      }
     } else {
       const sourceCards = Array.from(sourceColumn.cards || []);
       const destCards = Array.from(destColumn.cards || []);
+      // guard: ensure source.index valid
+      if (source.index < 0 || source.index >= sourceCards.length) return;
+
       const [movedCard] = sourceCards.splice(source.index, 1);
-      destCards.splice(destination.index, 0, movedCard);
+      if (!movedCard) return; // safety
+
+      // update moved card locally
+      const movedCardUpdated = { ...movedCard, columnId: destColumn.id, order: destination.index };
+
+      // insert into destCards at destination.index
+      destCards.splice(destination.index, 0, movedCardUpdated);
 
       const updatedSourceCards = sourceCards.map((card, index) => ({ ...card, order: index }));
       const updatedDestCards = destCards.map((card, index) => ({ ...card, order: index }));
-      movedCard.columnId = destColumn.id;
 
       setColumns(
         columns.map((col) =>
@@ -86,7 +101,19 @@ export default function Board({ boardId }: { boardId: number }) {
         )
       );
 
-      await updateCard(boardId, sourceColumn.id, +draggableId, { order: destination.index });
+      try {
+        // include new columnId so backend can move the card
+        await updateCard(boardId, sourceColumn.id, +draggableId, { order: destination.index, columnId: destColumn.id });
+      } catch (err) {
+        console.error('Failed to move card:', err);
+        // On failure, refetch columns to restore consistent state
+        getColumns(boardId)
+          .then((data) => {
+            const normalizedColumns = data.map((col) => ({ ...col, cards: col.cards || [] }));
+            setColumns(normalizedColumns);
+          })
+          .catch((e) => console.error('Failed to refetch columns after failed move:', e));
+      }
     }
   };
 
@@ -117,7 +144,7 @@ export default function Board({ boardId }: { boardId: number }) {
           {columns.map((column) => (
             <ColumnComponent
               key={column.id}
-              column={column}
+             column={column}
               boardId={boardId}
               onDelete={handleDeleteColumn}
             />

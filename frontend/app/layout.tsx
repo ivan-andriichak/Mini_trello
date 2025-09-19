@@ -2,7 +2,7 @@
 import './globals.css';
 import Link from 'next/link';
 import {usePathname, useRouter} from 'next/navigation';
-import React, {useEffect} from "react";
+import React, {ReactNode, useEffect} from "react";
 import {AuthProvider, useAuth} from "./components/AuthContext";
 
 
@@ -20,7 +20,8 @@ function NavBar() {
   return (
     <nav className="bg-gray-800 text-white p-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-       <Link
+        <div>
+          <Link
           href="/"
           className={`text-xl font-bold ${pathname === '/login' || pathname === '/register' ? 'pointer-events-none opacity-50' : ''}`}
           aria-disabled={pathname === '/login' || pathname === '/register'}
@@ -28,12 +29,22 @@ function NavBar() {
         >
           Mini-Trello
         </Link>
+        </div>
         <div className="space-x-4 flex items-center">
           {user ? (
          <>
-          <Link href="/boards" className={`inline-block mr-4 ${pathname === '/boards' ? 'underline text-red-500 hover:text-white' : ''}`}>
-            Boards
-          </Link>
+           <div>
+             <Link
+               href="/boards"
+               className={`inline-block mr-10 ${
+                 pathname === '/boards' || /^\/boards\/\d+$/.test(pathname)
+                   ? 'underline text-red-500 hover:text-white'
+                   : ''
+               }`}
+             >
+               {/^\/boards\/\d+$/.test(pathname) ? 'Board' : 'Boards'}
+             </Link>
+           </div>
             <span className="inline-flex-block mr-4 flex items-center">
               <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <circle cx="12" cy="8" r="4" />
@@ -65,7 +76,7 @@ function NavBar() {
   );
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
     <body>

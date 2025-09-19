@@ -91,7 +91,12 @@ export const getCards = async (boardId: number, columnId: number) => {
   return response.data;
 };
 
-export const updateCard = async (boardId: number, columnId: number, id: number, data: { title?: string; description?: string; order?: number }) => {
+export const updateCard = async (
+  boardId: number,
+  columnId: number,
+  id: number,
+  data: { title?: string; description?: string; order?: number; columnId?: number }
+) => {
   const response = await api.patch<Card>(`/boards/${boardId}/columns/${columnId}/cards/${id}`, data);
   return response.data;
 };

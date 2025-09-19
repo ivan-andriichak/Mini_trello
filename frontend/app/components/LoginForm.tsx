@@ -54,7 +54,7 @@ export default function LoginForm() {
                 type="checkbox"
                 checked={showPassword}
                 onChange={() => setShowPassword(!showPassword)}
-                className="mr-1"
+               className="mr-1 accent-green-600 h-6 w-6"
               />
               <label htmlFor="show-password" className="text-xs text-gray-600 select-none">Show password</label>
             </div>

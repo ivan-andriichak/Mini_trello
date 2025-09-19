@@ -1,31 +1,55 @@
 'use client';
 
-import { Draggable }  from '@hello-pangea/dnd';
-import { updateCard, deleteCard } from '../lib/api';
-import { Card } from '../types';
-import { useState } from 'react';
+import {Draggable} from '@hello-pangea/dnd';
+import {deleteCard, updateCard} from '../lib/api';
+import {Card} from '../types';
+import {FormEvent, useState} from 'react';
 
-export default function CardComponent({ card, index, boardId, columnId }: { card: Card; index: number; boardId: number; columnId: number }) {
+export default function CardComponent({
+                                        card,
+                                        index,
+                                        boardId,
+                                        columnId,
+                                        onDelete,
+                                        onUpdate,
+                                      }: {
+  card: Card;
+  index: number;
+  boardId: number;
+  columnId: number;
+  onDelete?: (cardId: number) => void;
+  onUpdate?: (updatedCard: Card) => void;
+}) {
   const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(card.title);
+  const [title, setTitle] = useState(card.title || '');
   const [description, setDescription] = useState(card.description || '');
+  const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleUpdate = async (e: React.FormEvent) => {
+  const handleUpdate = async (e: FormEvent) => {
     e.preventDefault();
+    setIsSaving(true);
     try {
-      await updateCard(boardId, columnId, card.id, { title, description });
+      const updated = await updateCard(boardId, card.columnId, card.id, { title, description });
+      onUpdate?.(updated);
       setIsEditing(false);
     } catch (err) {
       console.error('Failed to update card:', err);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const handleDelete = async () => {
+    if (!confirm('Delete this card?')) return;
+    setIsDeleting(true);
     try {
-      await deleteCard(boardId, columnId, card.id);
-      window.location.reload(); // Refresh to update cards
+      await deleteCard(boardId, card.columnId, card.id);
+      onDelete?.(card.id);
     } catch (err) {
       console.error('Failed to delete card:', err);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -52,8 +76,12 @@ export default function CardComponent({ card, index, boardId, columnId }: { card
                 className="w-full border border-gray-300 rounded-md p-1"
               />
               <div className="flex gap-2">
-                <button type="submit" className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600">
-                  Save
+                <button
+                  type="submit"
+                  disabled={isSaving}
+                  className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600"
+                >
+                  {isSaving ? 'Saving...' : 'Save'}
                 </button>
                 <button
                   type="button"
@@ -71,15 +99,16 @@ export default function CardComponent({ card, index, boardId, columnId }: { card
               <div className="flex gap-2 mt-2">
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="bg-yellow-500 text-white p-1 rounded-md hover:bg-yellow-600"
+                  className="bg-gray-300 text-black p-0.5 rounded-md hover:bg-yellow-600"
                 >
                   Edit
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="bg-red-500 text-white p-1 rounded-md hover:bg-red-600"
+                  disabled={isDeleting}
+                  className="bg-gray-300 text-black p-0.5 rounded-md hover:bg-red-600"
                 >
-                  Delete
+                  {isDeleting ? 'Deleting...' : 'Delete'}
                 </button>
               </div>
             </div>

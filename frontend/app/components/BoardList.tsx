@@ -113,13 +113,13 @@ export default function BoardList() {
                       <div className="mt-2 flex gap-2">
                         <button
                           onClick={() => startEditing(board)}
-                          className="bg-yellow-500 text-white p-1 rounded-md hover:bg-yellow-600"
+                          className="bg-gray-300 text-white p-0.5 rounded-md hover:bg-yellow-600"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteBoard(board.id)}
-                          className="bg-red-500 text-white p-1 rounded-md hover:bg-red-600"
+                          className="bg-gray-300 text-white p-0.5 rounded-md hover:bg-red-600"
                         >
                           Delete
                         </button>

@@ -79,13 +79,11 @@ function NavBar() {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-    <body>
-    <div className="w-full max-full mx-auto bg-gray-100">
+    <body className="bg-gray-50 min-h-screen">
       <AuthProvider>
         <NavBar/>
         {children}
       </AuthProvider>
-    </div>
       </body>
     </html>
   );

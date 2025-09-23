@@ -8,7 +8,7 @@ export const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({
   <input
     {...props}
     className={clsx(
-      "border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 transition",
+      "border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-400 transition",
       className
     )}
   />

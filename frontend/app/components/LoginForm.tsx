@@ -3,6 +3,7 @@
 import {FormEvent, useState} from 'react';
 import {useAuth} from './AuthContext';
 import {useRouter} from 'next/navigation';
+import {Input} from "./ui/Input";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,7 +30,7 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit} className="space-y-4" >
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-          <input
+          <Input
             id="email"
             type="email"
             value={email}
@@ -40,7 +41,7 @@ export default function LoginForm() {
         </div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
           <div >
-            <input
+            <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
               value={password}

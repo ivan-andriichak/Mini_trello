@@ -15,8 +15,8 @@ export default function Modal({
 }) {
   if (!open) return null;
   return (
-   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-10 transition-opacity duration-200">
-      <div className="bg-white rounded-xl p-6 min-w-[300px] shadow-2xl relative animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent transition-opacity duration-200">
+      <div className="bg-neutral-100 rounded-xl p-6 min-w-[400px] drop-shadow-4xl shadow-2xl shadow-black/60 relative animate-fadeIn border border-gray-300">
         <button
           className="absolute right-2 top-2 text-gray-500 hover:text-red-500 text-xl"
           onClick={onClose}

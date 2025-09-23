@@ -3,6 +3,7 @@
 import {FormEvent, useState} from 'react';
 import {useAuth} from './AuthContext';
 import {useRouter} from 'next/navigation';
+import {Input} from "./ui/Input";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -30,7 +31,7 @@ export default function RegisterForm() {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-          <input
+          <Input
             id="email"
             type="email"
             value={email}
@@ -41,7 +42,7 @@ export default function RegisterForm() {
         </div>
         <div>
           <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-          <input
+          <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
             value={password}
@@ -62,7 +63,7 @@ export default function RegisterForm() {
         </div>
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-          <input
+          <Input
             id="name"
             type="text"
             value={name}

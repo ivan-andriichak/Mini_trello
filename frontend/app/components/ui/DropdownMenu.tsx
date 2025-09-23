@@ -29,7 +29,7 @@ export default function DropdownMenu({
         ⋮
       </button>
       {open && (
-        <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded shadow-md z-10">
+        <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded shadow-md z-40">
           <button
             onClick={() => {
               onEdit();

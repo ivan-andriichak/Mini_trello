@@ -6,6 +6,7 @@ import {Card} from '../types';
 import {FormEvent, useState} from 'react';
 import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
+import DropdownMenu from "./ui/DropdownMenu";
 
 export default function CardComponent({
                                         card,
@@ -65,62 +66,58 @@ export default function CardComponent({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className={
-              "bg-white p-3 rounded-lg shadow transition-transform duration-150 select-none " +
-              (snapshot.isDragging
-                ? "outline outline-4 outline-blue-400 scale-105 z-30"
-                : "hover:shadow-lg hover:scale-[1.02]")
+              "bg-white p-3 rounded-lg shadow transition-transform duration-150 select-none border border-gray-300 " +
+              (snapshot.isDragging ? 'bg-blue-50 border-blue-300' : 'hover:bg-gray-50')
+
             }
           >
-            {isEditing ? (
-              <form onSubmit={handleUpdate} className="space-y-2">
-                <Input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md p-1"
-                />
-                <div className="flex gap-2">
-                  <button
-                    type="submit"
-                    disabled={isSaving}
-                    className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600"
-                  >
-                    {isSaving ? 'Saving...' : 'Save'}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsEditing(false)}
-                    className="bg-gray-500 text-white p-1 rounded-md hover:bg-gray-600"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-            ) : (
+         {isEditing ? (
+           <Modal open={isEditing} title="Edit Card" onClose={() => setIsEditing(false)}>
+             <form onSubmit={handleUpdate} className="space-y-2">
+               <Input
+                 type="text"
+                 value={title}
+                 onChange={(e) => setTitle(e.target.value)}
+               />
+               <textarea
+                 value={description}
+                 onChange={(e) => setDescription(e.target.value)}
+                 className="w-full border border-gray-300 rounded-md p-1"
+               />
+               <div className="flex gap-2">
+                 <button
+                   type="submit"
+                   disabled={isSaving}
+                   className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600"
+                 >
+                   {isSaving ? 'Saving...' : 'Save'}
+                 </button>
+                 <button
+                   type="button"
+                   onClick={() => setIsEditing(false)}
+                   className="bg-gray-500 text-white p-1 rounded-md hover:bg-gray-600"
+                 >
+                   Cancel
+                 </button>
+               </div>
+             </form>
+           </Modal>
+         ) : (
               <div>
-                <h4 className="font-semibold flex items-center gap-2">
-                  <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
-                  {card.title}
-                </h4>
-                {card.description && <p className="text-sm text-gray-600 mt-1">{card.description}</p>}
-                <div className="flex gap-2 mt-3">
-                  <button
-                    onClick={() => setIsEditing(true)}
-                    className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded hover:bg-yellow-500 hover:text-white transition"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => setShowDeleteModal(true)}
-                    disabled={isDeleting}
-                    className="bg-gray-200 text-gray-700 px-2 py-0.5 rounded hover:bg-red-500 hover:text-white transition"
-                  >
-                    Delete
-                  </button>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h4 className="font-semibold flex items-center gap-2">
+                      <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                      {card.title}
+                    </h4>
+                    {card.description && (
+                      <p className="text-sm text-gray-600 mt-1">{card.description}</p>
+                    )}
+                  </div>
+                  <DropdownMenu
+                    onEdit={() => setIsEditing(true)}
+                    onDelete={() => setShowDeleteModal(true)}
+                  />
                 </div>
               </div>
             )}
@@ -130,6 +127,7 @@ export default function CardComponent({
 
       <Modal open={showDeleteModal} title="Delete Card?" onClose={() => setShowDeleteModal(false)}>
         <p className="mb-4">Are you sure you want to delete this card?</p>
+
         <div className="flex gap-2">
           <button
             className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"

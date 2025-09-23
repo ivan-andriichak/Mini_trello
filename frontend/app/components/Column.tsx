@@ -76,7 +76,7 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="bg-white p-3 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[350px] max-w-[350px] ">
+    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[350px] max-w-[350px] ">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-lg font-semibold text-gray-700">{editTitle}</h3>
         <div className="flex gap-2">
@@ -120,7 +120,8 @@ export default function ColumnComponent({
                 onUpdate={() => onRefresh?.()}
               />
             ))}
-            {provided.placeholder}
+            <br/>
+          <div className="mb-8">{provided.placeholder}</div>
           </div>
         )}
       </Droppable>
@@ -165,7 +166,7 @@ export default function ColumnComponent({
       ) : (
         <button
           type="button"
-          className="bg-green-500 text-white p-1 rounded-md hover:bg-green-600 mt-2 w-full"
+          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full"
           onClick={() => setIsAddingCard(true)}
         >
           + Add Card

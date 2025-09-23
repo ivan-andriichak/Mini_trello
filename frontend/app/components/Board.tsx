@@ -5,6 +5,8 @@ import {DragDropContext, DropResult} from '@hello-pangea/dnd';
 import {createColumn, deleteColumn, getColumns, updateCard} from '../lib/api';
 import {Column} from '../types';
 import ColumnComponent from './Column';
+import {Button} from "./ui/Button";
+import {Input} from "./ui/Input";
 
 export default function Board({ boardId }: { boardId: number }) {
   const [columns, setColumns] = useState<Column[]>([]);
@@ -45,9 +47,6 @@ export default function Board({ boardId }: { boardId: number }) {
     } catch (err: unknown) {
       if (err instanceof Error && err.message.includes('не знайдена')) {
         setColumns((prev) => prev.filter((col) => col.id !== columnId));
-        alert('Колонка вже була видалена!');
-      } else {
-        alert('Помилка при видаленні колонки');
       }
       console.error('Failed to delete column:', err);
     }
@@ -105,19 +104,14 @@ export default function Board({ boardId }: { boardId: number }) {
       <h2 className="text-2xl font-bold mb-4">Board</h2>
       {columns.length < 3 && (
         <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
-          <input
+          <Input
             type="text"
             value={newColumnTitle}
             onChange={(e) => setNewColumnTitle(e.target.value)}
             placeholder="New column title"
             className="flex-1 border border-gray-300 rounded-md p-2"
           />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
-          >
-            Create Column
-          </button>
+          <Button>Create Column</Button>
         </form>
       )}
       <DragDropContext onDragEnd={handleDragEnd}>

@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
-import { getBoards, createBoard, updateBoard, deleteBoard } from '../lib/api';
-import { Board } from '../types';
+import React, {useEffect, useState} from 'react';
+import {useAuth} from './AuthContext';
+import {createBoard, deleteBoard, getBoards, updateBoard} from '../lib/api';
+import {Board} from '../types';
+
 import Link from 'next/link';
+import {Button} from "./ui/Button";
+import {Input} from "./ui/Input";
 
 export default function BoardList() {
   const [boards, setBoards] = useState<Board[]>([]);
@@ -63,16 +66,15 @@ export default function BoardList() {
       {user ? (
         <>
           <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2">
-            <input
+            <Input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="New board title"
               className="flex-1 border border-gray-300 rounded-md p-2"
             />
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-              Create Board
-            </button>
+            <Button>Create Board</Button>
+
           </form>
           {boards.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -80,17 +82,15 @@ export default function BoardList() {
                 <div key={board.id} className="p-4 bg-gray-100 rounded-md shadow hover:bg-gray-200 transition">
                   {editingBoardId === board.id ? (
                     <div className="flex flex-col gap-2">
-                      <input
+                      <Input
                         type="text"
                         value={editTitle}
                         onChange={(e) => setEditTitle(e.target.value)}
-                        className="border border-gray-300 rounded-md p-2"
                         placeholder="Edit board title"
                       />
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditBoard(board.id)}
-                          className="bg-gray-300 text-white p-0.5 rounded-md hover:bg-green-600"
                         >
                           Save
                         </button>

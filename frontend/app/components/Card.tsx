@@ -4,7 +4,8 @@ import {Draggable} from '@hello-pangea/dnd';
 import {deleteCard, updateCard} from '../lib/api';
 import {Card} from '../types';
 import {FormEvent, useState} from 'react';
-import Modal from "./Modal";
+import Modal from "./ui/Modal";
+import {Input} from "./ui/Input";
 
 export default function CardComponent({
                                         card,
@@ -72,11 +73,10 @@ export default function CardComponent({
           >
             {isEditing ? (
               <form onSubmit={handleUpdate} className="space-y-2">
-                <input
+                <Input
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md p-1"
                 />
                 <textarea
                   value={description}

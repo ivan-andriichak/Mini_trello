@@ -19,7 +19,7 @@ function NavBar() {
   }, [isLoading, user, pathname, router]);
 
   return (
-    <nav className="bg-gray-800 text-white p-4 ">
+    <nav className="bg-neutral-700 text-white p-4 ">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-6 ">
           <Link

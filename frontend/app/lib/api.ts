@@ -1,32 +1,19 @@
 import axios from 'axios';
 import {AuthResponse, Board, Card, Column} from '../types';
+import {onError} from "./interceptors";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
 
+
 api.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    // log more info for debugging 404s (helps see server body)
-    if (error?.response) {
-      console.error('API error response:', {
-        url: error.config?.url,
-        status: error.response.status,
-        data: error.response.data,
-      });
-    }
-    if (error.response?.status === 401 && !error.config.sent) {
-      error.config.sent = true;
-      await refresh();
-      return api(error.config);
-    }
-    return Promise.reject(error);
-  }
+  onError
 );
 
-export const register = async (data: { email: string; password: string; name: string}) => {
+export const register = async (data: { email: string; password: string; name: string }) => {
   const response = await api.post<AuthResponse>('/auth/register', data);
   return response.data;
 };

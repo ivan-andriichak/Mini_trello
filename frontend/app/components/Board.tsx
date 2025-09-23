@@ -42,7 +42,13 @@ export default function Board({ boardId }: { boardId: number }) {
     try {
       await deleteColumn(boardId, columnId);
       setColumns((prev) => prev.filter((col) => col.id !== columnId));
-    } catch (err) {
+    } catch (err: unknown) {
+      if (err instanceof Error && err.message.includes('не знайдена')) {
+        setColumns((prev) => prev.filter((col) => col.id !== columnId));
+        alert('Колонка вже була видалена!');
+      } else {
+        alert('Помилка при видаленні колонки');
+      }
       console.error('Failed to delete column:', err);
     }
   };
@@ -97,7 +103,7 @@ export default function Board({ boardId }: { boardId: number }) {
   return (
     <div className="w-full max-w-7xl mx-auto p-4 max-h-600 ">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
-      {columns.length < 4 && (
+      {columns.length < 3 && (
         <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
           <input
             type="text"
@@ -115,7 +121,7 @@ export default function Board({ boardId }: { boardId: number }) {
         </form>
       )}
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="flex gap-4 justify-center w-full">
+        <div className="flex items-start gap-4 justify-center  w-full overflow-x-auto">
           {columns.map((column) => (
             <ColumnComponent
               key={column.id}

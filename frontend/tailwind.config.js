@@ -1,4 +1,6 @@
-module.exports = {
+import tailwindScrollbar from 'tailwind-scrollbar';
+
+export default {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -6,5 +8,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    tailwindScrollbar,
+  ],
 };

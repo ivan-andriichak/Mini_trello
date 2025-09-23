@@ -1,0 +1,41 @@
+'use client';
+
+import React from 'react';
+
+export default function Modal({
+                                open,
+                                title,
+                                children,
+                                onClose,
+                              }: {
+  open: boolean;
+  title?: string;
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 transition-opacity duration-200">
+      <div className="bg-white rounded-xl p-6 min-w-[300px] shadow-2xl relative animate-fadeIn">
+        <button
+          className="absolute right-2 top-2 text-gray-500 hover:text-red-500 text-xl"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+        {title && <h3 className="text-lg font-bold mb-4">{title}</h3>}
+        {children}
+      </div>
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.96);}
+          to { opacity: 1; transform: scale(1);}
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.18s ease;
+        }
+      `}</style>
+    </div>
+  );
+}

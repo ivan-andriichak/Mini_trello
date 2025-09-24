@@ -1,15 +1,15 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import {useAuth} from './AuthContext';
-import {createBoard, deleteBoard, getBoards, updateBoard} from '../lib/api';
-import {Board} from '../types';
-
+import React, { useEffect, useState } from 'react';
+import { useAuth } from './AuthContext';
+import { createBoard, deleteBoard, getBoards, updateBoard } from '../lib/api';
+import { Board } from '../types';
 import Link from 'next/link';
-import {Button} from "./ui/Button";
-import {Input} from "./ui/Input";
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
 import DropdownMenu from "./ui/DropdownMenu";
 import Modal from "./ui/Modal";
+import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 
 export default function BoardList() {
   const [boards, setBoards] = useState<Board[]>([]);
@@ -23,7 +23,9 @@ export default function BoardList() {
 
   useEffect(() => {
     if (user) {
-      getBoards().then(setBoards).catch(console.error);
+      getBoards().then(res => {
+        setBoards(res.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+      }).catch(console.error);
     }
   }, [user]);
 
@@ -65,47 +67,105 @@ export default function BoardList() {
     }
   };
 
+  const handleDragEnd = async (result: DropResult) => {
+    if (!result.destination) return;
+    const fromIdx = result.source.index;
+    const toIdx = result.destination.index;
+    if (fromIdx === toIdx) return;
+
+    const reordered = Array.from(boards);
+    const [dragged] = reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, dragged);
+
+    const boardsWithOrder = reordered.map((board, idx) => ({
+      ...board,
+      order: idx
+    }));
+
+    setBoards(boardsWithOrder);
+
+    try {
+      for (const b of boardsWithOrder) {
+        await updateBoard(b.id, { order: b.order });
+      }
+    } catch (err) {
+      console.error("Failed to save board order:", err);
+    }
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-2 sm:p-4 bg-white rounded-md shadow mt-6 min-h-[650px]">
+    <div className="max-w-4xl mx-auto p-2 sm:p-4 bg-white rounded-md shadow mt-6 min-h-[850px]  ">
       <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Your Boards</h1>
       {user ? (
         <>
-          <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2 flex-wrap">
-            <Input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="New board title"
-              className="flex-1 text-xs sm:text-base"
-            />
-            <Button>Create Board</Button>
-          </form>
+      {boards.length < 9 && (
+        <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2 flex-wrap">
+          <Input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="New board title"
+            className="flex-1 text-xs sm:text-base"
+          />
+          <Button>Create Board</Button>
+        </form>
+      )}
           {boards.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {boards.map((board) => (
-                <div key={board.id} className="p-2 sm:p-4 bg-gray-100 rounded-md shadow hover:bg-gray-200 transition relative text-xs sm:text-base">
-                  <div className="absolute top-2 right-2">
-                    <DropdownMenu
-                      onEdit={() => {
-                        setSelectedBoardId(board.id);
-                        setEditTitle(board.title);
-                        setShowEditModal(true);
-                      }}
-                      onDelete={() => {
-                        setSelectedBoardId(board.id);
-                        setShowDeleteModal(true);
-                      }}
-                    />
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Droppable droppableId="boards-droppable">
+                {(provided, snapshot) => (
+                  <div
+                    className={
+                      "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 min-h-[240px] " +
+                      (snapshot.isDraggingOver ? " bg-blue-100" : "")
+                    }
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {boards.map((board, idx) => (
+                      <Draggable key={board.id} draggableId={String(board.id)} index={idx}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={
+                              "bg-gray-100 rounded-md shadow transition relative text-xs sm:text-base flex flex-col p-2 sm:p-4 min-h-[180px] " +
+                              (snapshot.isDragging ? "bg-blue-50 border-2 border-blue-400 z-10" : "hover:bg-gray-200")
+                            }
+                            style={{
+                              ...provided.draggableProps.style,
+                              userSelect: "none"
+                            }}
+                          >
+                            <div className="absolute top-2 right-2">
+                              <DropdownMenu
+                                onEdit={() => {
+                                  setSelectedBoardId(board.id);
+                                  setEditTitle(board.title);
+                                  setShowEditModal(true);
+                                }}
+                                onDelete={() => {
+                                  setSelectedBoardId(board.id);
+                                  setShowDeleteModal(true);
+                                }}
+                              />
+                            </div>
+                            <Link href={`/boards/${board.id}`} className="block">
+                              <h2 className="text-base sm:text-xl font-semibold text-gray-800">{board.title}</h2>
+                              <p className="text-xs sm:text-sm text-gray-600">
+                                Created: {new Date(board.createdAt).toLocaleDateString()}
+                              </p>
+                            </Link>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
                   </div>
-                  <Link href={`/boards/${board.id}`} className="block">
-                    <h2 className="text-base sm:text-xl font-semibold text-gray-800">{board.title}</h2>
-                    <p className="text-xs sm:text-sm text-gray-600">
-                      Created: {new Date(board.createdAt).toLocaleDateString()}
-                    </p>
-                  </Link>
-                </div>
-              ))}
-            </div>
+                )}
+              </Droppable>
+            </DragDropContext>
           ) : (
             <p className="text-gray-600">No boards yet. Create one to get started!</p>
           )}

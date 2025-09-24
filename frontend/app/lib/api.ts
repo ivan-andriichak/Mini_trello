@@ -47,7 +47,7 @@ export const getBoard = async (id: number) => {
   return response.data;
 };
 
-export const updateBoard = async (id: number, data: { title?: string }) => {
+export const updateBoard = async (id: number, data: { title?: string; order?: number }) => {
   const response = await api.patch<Board>(`/boards/${id}`, data);
   return response.data;
 };

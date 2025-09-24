@@ -19,6 +19,8 @@ export interface Board {
   createdAt: string;
   updatedAt: string;
   userId: string;
+  order: number | null;
+  columns: Column[];
 }
 
 export interface Column {

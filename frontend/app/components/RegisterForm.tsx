@@ -1,9 +1,11 @@
 'use client';
 
-import {FormEvent, useState} from 'react';
-import {useAuth} from './AuthContext';
-import {useRouter} from 'next/navigation';
-import {Input} from "./ui/Input";
+import { FormEvent, useState } from 'react';
+import { useAuth } from './AuthContext';
+import { useRouter } from 'next/navigation';
+import { Input } from "./ui/Input";
+import { ErrorMessage } from "./ui/ErrorMessage";
+import { RegisterFormValidator } from "../types/RegEx";
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -11,23 +13,33 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { register } = useAuth();
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError('');
+    const validationError = RegisterFormValidator(email, password, name);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setIsLoading(true);
     try {
       await register({ email, password, name });
       router.push('/boards');
-    } catch (err) {
-      setError('Registration failed');
+    } catch (err: unknown) {
+      setError(typeof err === "object" && err && "message" in err ? (err as Error).message : "Unknown error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="max-w-md mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Register</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <ErrorMessage message={error} />}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
@@ -35,7 +47,7 @@ export default function RegisterForm() {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.replace(/\s+/g, ''))}
             className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             required
           />
@@ -72,8 +84,12 @@ export default function RegisterForm() {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-          Register
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+        >
+          {isLoading ? 'Registering...' : 'Register'}
         </button>
       </form>
       <p className="mt-4 text-center">

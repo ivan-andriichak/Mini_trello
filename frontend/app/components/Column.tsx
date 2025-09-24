@@ -28,12 +28,15 @@ export default function ColumnComponent({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const [localTitle, setLocalTitle] = useState(column.title);
+
   const handleEditColumn = async () => {
     try {
       const updated = await updateColumn(boardId, column.id, { title: editTitle });
+      setLocalTitle(updated.title);
       setEditTitle(updated.title);
       setIsEditModalOpen(false);
-      onRefresh?.();
+
     } catch (err) {
       console.error('Failed to update column:', err);
     }
@@ -75,7 +78,7 @@ export default function ColumnComponent({
   return (
     <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[90vw] flex-shrink-0">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700">{editTitle}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditModalOpen(true)}

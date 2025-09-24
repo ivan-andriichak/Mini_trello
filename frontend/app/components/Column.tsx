@@ -21,13 +21,10 @@ export default function ColumnComponent({
 }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editTitle, setEditTitle] = useState(column.title);
-
   const [isAddingCard, setIsAddingCard] = useState(false);
   const [isCreatingCard, setIsCreatingCard] = useState(false);
-
   const [newCardTitle, setNewCardTitle] = useState('');
   const [newCardDescription, setNewCardDescription] = useState('');
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -76,19 +73,19 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[350px] max-w-[350px] ">
+    <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[90vw] flex-shrink-0">
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-semibold text-gray-700">{editTitle}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-gray-700">{editTitle}</h3>
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditModalOpen(true)}
-            className="text-grey-200 hover:text-yellow-900 transition"
+            className="text-grey-200 hover:text-yellow-900 transition text-xs sm:text-base"
           >
             Edit
           </button>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="text-red-500 hover:text-red-700 transition"
+            className="text-red-500 hover:text-red-700 transition text-xs sm:text-base"
           >
             Delete
           </button>
@@ -100,12 +97,12 @@ export default function ColumnComponent({
             ref={provided.innerRef}
             {...provided.droppableProps}
             className={
-              "space-y-2 mb-2 overflow-y-auto overflow-x-hidden max-h-[550px] transition-all scrollbar-thin scrollbar-thumb-gray-300 " +
+              "space-y-2 mb-2 overflow-y-auto overflow-x-hidden max-h-[360px] sm:max-h-[550px] transition-all scrollbar-thin scrollbar-thumb-gray-300 " +
               (snapshot.isDraggingOver ? "bg-blue-100" : "")
             }
           >
             {(column.cards || []).length === 0 && (
-              <div className="text-center text-gray-400 py-8 italic opacity-70">
+              <div className="text-center text-gray-400 py-8 italic opacity-70 text-xs sm:text-base">
                 No cards yet
               </div>
             )}
@@ -120,8 +117,8 @@ export default function ColumnComponent({
                 onUpdate={() => onRefresh?.()}
               />
             ))}
-            <br/>
-          <div className="mb-8">{provided.placeholder}</div>
+            <br />
+            <div className="mb-8">{provided.placeholder}</div>
           </div>
         )}
       </Droppable>
@@ -133,7 +130,7 @@ export default function ColumnComponent({
             value={newCardTitle}
             onChange={(e) => setNewCardTitle(e.target.value)}
             placeholder="Card title"
-            className="w-full border border-gray-300 rounded-md p-1"
+            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
             required
             disabled={isCreatingCard}
           />
@@ -142,20 +139,20 @@ export default function ColumnComponent({
             value={newCardDescription}
             onChange={(e) => setNewCardDescription(e.target.value)}
             placeholder="Card description (optional)"
-            className="w-full border border-gray-300 rounded-md p-1"
+            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
             disabled={isCreatingCard}
           />
           <div className="flex gap-2">
             <button
               type="submit"
               disabled={isCreatingCard}
-              className="bg-blue-400 text-white p-0.5 rounded-md "
+              className="bg-blue-400 text-white p-0.5 rounded-md text-xs sm:text-base"
             >
               {isCreatingCard ? 'Creating...' : 'Add Card'}
             </button>
             <button
               type="button"
-              className="bg-gray-200 text-gray-700 p-0.5 rounded-md hover:bg-gray-300"
+              className="bg-gray-200 text-gray-700 p-0.5 rounded-md hover:bg-gray-300 text-xs sm:text-base"
               onClick={() => setIsAddingCard(false)}
               disabled={isCreatingCard}
             >
@@ -166,7 +163,7 @@ export default function ColumnComponent({
       ) : (
         <button
           type="button"
-          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full"
+          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full text-xs sm:text-base"
           onClick={() => setIsAddingCard(true)}
         >
           + Add Card
@@ -206,7 +203,7 @@ export default function ColumnComponent({
           <div className="flex gap-2">
             <button
               type="button"
-              className="bg-blue-400 text-white p-2 rounded-md "
+              className="bg-blue-400 text-white p-2 rounded-md"
               onClick={handleEditColumn}
             >
               Save

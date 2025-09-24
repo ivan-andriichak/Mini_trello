@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
     <body className="bg-gray-50 min-h-screen">
     <AuthProvider>
-      <main className="max-w-7xl mx-auto px-4">
+      <main className="max-w-7xl mx-auto sm:px-4 px-1 py-2 min-h-screen">
       <NavBar />
         {children}
       </main>

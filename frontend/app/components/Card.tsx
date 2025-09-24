@@ -66,52 +66,51 @@ export default function CardComponent({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className={
-              "bg-white p-3 rounded-lg shadow transition-transform duration-150 select-none border border-gray-300 " +
+              "bg-white p-2 sm:p-3 rounded-lg shadow transition-transform duration-150 select-none border border-gray-300 text-xs sm:text-base " +
               (snapshot.isDragging ? 'bg-blue-50 border-blue-300' : 'hover:bg-gray-50')
-
             }
           >
-         {isEditing ? (
-           <Modal open={isEditing} title="Edit Card" onClose={() => setIsEditing(false)}>
-             <form onSubmit={handleUpdate} className="space-y-2">
-               <Input
-                 type="text"
-                 value={title}
-                 onChange={(e) => setTitle(e.target.value)}
-               />
-               <textarea
-                 value={description}
-                 onChange={(e) => setDescription(e.target.value)}
-                 className="w-full border border-gray-300 rounded-md p-1"
-               />
-               <div className="flex gap-2">
-                 <button
-                   type="submit"
-                   disabled={isSaving}
-                   className="bg-blue-400 text-white p-1 rounded-md "
-                 >
-                   {isSaving ? 'Saving...' : 'Save'}
-                 </button>
-                 <button
-                   type="button"
-                   onClick={() => setIsEditing(false)}
-                   className="bg-gray-200  p-1 rounded-md hover:bg-gray-300"
-                 >
-                   Cancel
-                 </button>
-               </div>
-             </form>
-           </Modal>
-         ) : (
+            {isEditing ? (
+              <Modal open={isEditing} title="Edit Card" onClose={() => setIsEditing(false)}>
+                <form onSubmit={handleUpdate} className="space-y-2">
+                  <Input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      type="submit"
+                      disabled={isSaving}
+                      className="bg-blue-400 text-white p-1 rounded-md text-xs sm:text-base"
+                    >
+                      {isSaving ? 'Saving...' : 'Save'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditing(false)}
+                      className="bg-gray-200 p-1 rounded-md hover:bg-gray-300 text-xs sm:text-base"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </Modal>
+            ) : (
               <div>
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="font-semibold flex items-center gap-2">
+                    <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
                       <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
                       {card.title}
                     </h4>
                     {card.description && (
-                      <p className="text-sm text-gray-600 mt-1">{card.description}</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mt-1">{card.description}</p>
                     )}
                   </div>
                   <DropdownMenu
@@ -127,7 +126,6 @@ export default function CardComponent({
 
       <Modal open={showDeleteModal} title="Delete Card?" onClose={() => setShowDeleteModal(false)}>
         <p className="mb-4">Are you sure you want to delete this card?</p>
-
         <div className="flex gap-2">
           <button
             className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"

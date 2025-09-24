@@ -74,7 +74,7 @@ export default function Board({ boardId }: { boardId: number }) {
       const dst = nextCols.find((c) => c.id === destColumn.id)!;
 
       const idxInSrc = src.cards.findIndex((c) => c?.id === cardId);
-      if (idxInSrc === -1) return prevCols; // nothing to do
+      if (idxInSrc === -1) return prevCols;
 
       const [moved] = src.cards.splice(idxInSrc, 1);
       if (!moved) return prevCols;
@@ -100,10 +100,10 @@ export default function Board({ boardId }: { boardId: number }) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 max-h-600 ">
+    <div className="w-full max-w-7xl mx-auto p-2 sm:p-4 max-h-700 sm:max-h-[100vh] ">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
       {columns.length < 3 && (
-        <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2">
+        <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2 flex-wrap">
           <Input
             type="text"
             value={newColumnTitle}
@@ -114,8 +114,13 @@ export default function Board({ boardId }: { boardId: number }) {
           <Button>Create Column</Button>
         </form>
       )}
+      {columns.length > 1 && (
+        <div className="sm:hidden text-center text-gray-400 text-xs py-1">
+          Swipe columns &rarr;
+        </div>
+      )}
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="flex items-start gap-4 justify-center  w-full overflow-x-auto">
+        <div className="flex items-start gap-4 justify-center w-full overflow-x-auto flex-nowrap pb-4 scrollbar-thin scrollbar-thumb-gray-300">
           {columns.map((column) => (
             <ColumnComponent
               key={column.id}

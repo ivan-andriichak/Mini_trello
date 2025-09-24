@@ -66,24 +66,24 @@ export default function BoardList() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 bg-white rounded-md shadow mt-6 min-h-[850px]">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">Your Boards</h1>
+    <div className="max-w-4xl mx-auto p-2 sm:p-4 bg-white rounded-md shadow mt-6 min-h-[650px]">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Your Boards</h1>
       {user ? (
         <>
-          <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2">
+          <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2 flex-wrap">
             <Input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="New board title"
-              className="flex-1"
+              className="flex-1 text-xs sm:text-base"
             />
             <Button>Create Board</Button>
           </form>
           {boards.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {boards.map((board) => (
-                <div key={board.id} className="p-4 bg-gray-100 rounded-md shadow hover:bg-gray-200 transition relative">
+                <div key={board.id} className="p-2 sm:p-4 bg-gray-100 rounded-md shadow hover:bg-gray-200 transition relative text-xs sm:text-base">
                   <div className="absolute top-2 right-2">
                     <DropdownMenu
                       onEdit={() => {
@@ -98,8 +98,8 @@ export default function BoardList() {
                     />
                   </div>
                   <Link href={`/boards/${board.id}`} className="block">
-                    <h2 className="text-xl font-semibold text-gray-800">{board.title}</h2>
-                    <p className="text-sm text-gray-600">
+                    <h2 className="text-base sm:text-xl font-semibold text-gray-800">{board.title}</h2>
+                    <p className="text-xs sm:text-sm text-gray-600">
                       Created: {new Date(board.createdAt).toLocaleDateString()}
                     </p>
                   </Link>

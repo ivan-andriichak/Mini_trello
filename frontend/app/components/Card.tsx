@@ -88,14 +88,14 @@ export default function CardComponent({
                  <button
                    type="submit"
                    disabled={isSaving}
-                   className="bg-blue-500 text-white p-1 rounded-md hover:bg-blue-600"
+                   className="bg-blue-400 text-white p-1 rounded-md "
                  >
                    {isSaving ? 'Saving...' : 'Save'}
                  </button>
                  <button
                    type="button"
                    onClick={() => setIsEditing(false)}
-                   className="bg-gray-500 text-white p-1 rounded-md hover:bg-gray-600"
+                   className="bg-gray-200  p-1 rounded-md hover:bg-gray-300"
                  >
                    Cancel
                  </button>
@@ -137,7 +137,7 @@ export default function CardComponent({
             {isDeleting ? 'Deleting...' : 'Delete'}
           </button>
           <button
-            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-400"
+            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-300"
             onClick={() => setShowDeleteModal(false)}
           >
             Cancel

@@ -149,13 +149,13 @@ export default function ColumnComponent({
             <button
               type="submit"
               disabled={isCreatingCard}
-              className="bg-green-500 text-white p-0.5 rounded-md hover:bg-green-600"
+              className="bg-blue-400 text-white p-0.5 rounded-md "
             >
               {isCreatingCard ? 'Creating...' : 'Add Card'}
             </button>
             <button
               type="button"
-              className="bg-gray-300 text-gray-700 p-0.5 rounded-md hover:bg-gray-400"
+              className="bg-gray-200 text-gray-700 p-0.5 rounded-md hover:bg-gray-300"
               onClick={() => setIsAddingCard(false)}
               disabled={isCreatingCard}
             >
@@ -184,7 +184,7 @@ export default function ColumnComponent({
             {isDeleting ? 'Deleting...' : 'Delete'}
           </button>
           <button
-            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-400"
+            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-300"
             onClick={() => setShowDeleteModal(false)}
           >
             Cancel
@@ -206,14 +206,14 @@ export default function ColumnComponent({
           <div className="flex gap-2">
             <button
               type="button"
-              className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600"
+              className="bg-blue-400 text-white p-2 rounded-md "
               onClick={handleEditColumn}
             >
               Save
             </button>
             <button
               type="button"
-              className="bg-gray-500 text-white p-2 rounded-md hover:bg-gray-600"
+              className="bg-gray-200  p-2 rounded-md hover:bg-gray-300"
               onClick={() => setIsEditModalOpen(false)}
             >
               Cancel

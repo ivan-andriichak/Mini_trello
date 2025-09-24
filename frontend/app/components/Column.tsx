@@ -76,7 +76,7 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[90vw] flex-shrink-0">
+    <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[300px]  flex-shrink-0">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>
         <div className="flex gap-2">
@@ -127,7 +127,7 @@ export default function ColumnComponent({
       </Droppable>
 
       {isAddingCard ? (
-        <form onSubmit={handleCreateCard} className="space-y-2 mt-2">
+     <form onSubmit={handleCreateCard} className="space-y-2 mt-2 ">
           <Input
             type="text"
             value={newCardTitle}

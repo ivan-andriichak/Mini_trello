@@ -33,7 +33,7 @@ export default function NavBar() {
 
   return (
     <nav className="bg-neutral-700 text-white p-4 ">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="max-w-7xl mx-auto flex justify-between items-center ">
         <div className="flex items-center gap-6 ">
           <Link
             href="/"
@@ -44,7 +44,7 @@ export default function NavBar() {
             Mini-Trello
           </Link>
           <hr/>
-          <Breadcrumbs boardTitle={boardTitle} />
+          <Breadcrumbs boardTitle={boardTitle}/>
         </div>
         <div className="space-x-4 flex items-center">
           {user ? (

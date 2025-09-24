@@ -60,7 +60,7 @@ export function Breadcrumbs({ boardTitle }: Props) {
   const crumbs = getCrumbs(pathname, boardTitle);
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-4">
+    <nav aria-label="Breadcrumb" >
       <ol className="flex items-center space-x-2 text-sm text-gray-500">
         {crumbs.map((crumb, idx) => (
           <li key={crumb.key} className="flex items-center">

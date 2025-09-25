@@ -56,6 +56,18 @@ export default function CardComponent({
       setIsDeleting(false);
     }
   };
+ const getColumnColorClass = (index: number) => {
+   switch (index) {
+     case 0:
+       return 'bg-blue-400';
+     case 1:
+       return 'bg-green-400';
+     case 2:
+       return 'bg-orange-400';
+     default:
+       return 'bg-gray-400';
+   }
+ };
 
   return (
     <>
@@ -106,7 +118,9 @@ export default function CardComponent({
                 <div className="flex justify-between items-start">
                   <div>
                     <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
-                      <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                     <span
+                       className={`inline-block w-2 h-2 rounded-full ${getColumnColorClass(index)}`}
+                     />
                       {card.title}
                     </h4>
                     {card.description && (

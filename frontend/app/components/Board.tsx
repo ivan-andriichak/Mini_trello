@@ -100,7 +100,7 @@ export default function Board({ boardId }: { boardId: number }) {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-2 sm:p-4 max-h-700 sm:max-h-[100vh] ">
+    <div className="  max-w-7xl mx-auto p-2 sm:p-4 max-h-800 sm:max-h-[100vh] ">
       <h2 className="text-2xl font-bold mb-4">Board</h2>
       {columns.length < 3 && (
         <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2 flex-wrap">
@@ -122,13 +122,14 @@ export default function Board({ boardId }: { boardId: number }) {
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className="flex items-start gap-2 sm:gap-4 justify-start sm:justify-center
          w-full overflow-x-auto flex-nowrap pb-2 sm:pb-4 scrollbar-thin scrollbar-thumb-gray-300 min-h-[220px] sm:min-h-[300px]">
-          {columns.map((column) => (
+          {columns.map((column, idx) => (
             <ColumnComponent
               key={column.id}
               column={column}
               boardId={boardId}
               onDelete={handleDeleteColumn}
               onRefresh={fetchColumns}
+              index={idx}
             />
           ))}
         </div>

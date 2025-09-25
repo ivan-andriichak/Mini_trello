@@ -13,11 +13,13 @@ export default function ColumnComponent({
                                           boardId,
                                           onDelete,
                                           onRefresh,
+                                          index,
                                         }: {
   column: ColumnType;
   boardId: number;
   onDelete: (columnId: number) => void;
   onRefresh?: () => void;
+  index: number;
 }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editTitle, setEditTitle] = useState(column.title);
@@ -29,6 +31,9 @@ export default function ColumnComponent({
   const [isDeleting, setIsDeleting] = useState(false);
 
   const [localTitle, setLocalTitle] = useState(column.title);
+
+  const colors = ['text-red-200', 'text-green-600', 'text-blue-200'];
+  const headerColor = colors[index % colors.length];
 
   const handleEditColumn = async () => {
     try {
@@ -76,14 +81,10 @@ export default function ColumnComponent({
   };
 
   return (
-  <div className="bg-white p-2 sm:p-4 rounded-xl border
-  border-gray-200
-   shadow-md flex flex-col
-     max-w-full
-  sm:min-w-[250px]
-  flex-shrink-0 w-[95vw] xs:w-[90vw] sm:w-auto">
+    <div className={`p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col 
+    max-w-full sm:min-w-[250px] sm:max-w-[200px] flex-shrink-0 xs:w-[30vw] sm:w-auto`}>
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>
+        <h3 className={`text-base ${headerColor} sm:text-lg font-semibold`}>{localTitle}</h3>
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditModalOpen(true)}
@@ -93,7 +94,7 @@ export default function ColumnComponent({
           </button>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="text-red-500 hover:text-red-700 transition text-xs sm:text-base"
+            className="hover:text-red-700 transition text-xs sm:text-base"
           >
             Delete
           </button>
@@ -171,7 +172,7 @@ export default function ColumnComponent({
       ) : (
         <button
           type="button"
-          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full text-xs sm:text-base"
+          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full text-xs sm:text-base "
           onClick={() => setIsAddingCard(true)}
         >
           + Add Card

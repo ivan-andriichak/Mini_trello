@@ -1,0 +1,4272 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+backend/.gitignore
+backend/.prettierrc
+backend/eslint.config.mjs
+backend/nest-cli.json
+backend/package.json
+backend/prisma/migrations/20250915175252_add_initial_models/migration.sql
+backend/prisma/migrations/20250916121600_update_user_id_and_fields/migration.sql
+backend/prisma/migrations/20250919084359_changed_model_user/migration.sql
+backend/prisma/migrations/20250924113643_add_order_board/migration.sql
+backend/prisma/migrations/migration_lock.toml
+backend/prisma/migrations/prisma.module.ts
+backend/prisma/migrations/prisma.service.ts
+backend/prisma/schema.prisma
+backend/README.md
+backend/src/app.controller.ts
+backend/src/app.module.ts
+backend/src/app.service.ts
+backend/src/common/interseptors/loggin.interseptor.ts
+backend/src/common/middlewares/logger.middleware.ts
+backend/src/main.ts
+backend/src/modules/auth/auth.controller.ts
+backend/src/modules/auth/auth.module.ts
+backend/src/modules/auth/dto/req/login.req.dto.ts
+backend/src/modules/auth/dto/req/register.req.dto.ts
+backend/src/modules/auth/dto/res/auth.res.dto.ts
+backend/src/modules/auth/dto/res/base-user.res.ts
+backend/src/modules/auth/dto/res/token-pair.res.dto.ts
+backend/src/modules/auth/dto/res/user.res.dto.ts
+backend/src/modules/auth/guards/jwt-auth.guard.ts
+backend/src/modules/auth/services/auth.service.ts
+backend/src/modules/auth/services/jwt.strategy.ts
+backend/src/modules/boards/boards.controller.ts
+backend/src/modules/boards/boards.module.ts
+backend/src/modules/boards/boards.service.ts
+backend/src/modules/boards/dto/req/create-board.req.dto.ts
+backend/src/modules/boards/dto/req/update-board.req.dto.ts
+backend/src/modules/boards/dto/res/board.res.dto.ts
+backend/src/modules/cards/cards.controller.ts
+backend/src/modules/cards/cards.module.ts
+backend/src/modules/cards/cards.service.ts
+backend/src/modules/cards/dto/req/create-card.req.dto.ts
+backend/src/modules/cards/dto/req/update-card.req.dto.ts
+backend/src/modules/cards/dto/res/card.res.dto.ts
+backend/src/modules/columns/columns.controller.ts
+backend/src/modules/columns/columns.module.ts
+backend/src/modules/columns/columns.service.ts
+backend/src/modules/columns/dto/req/create-column.req.dto.ts
+backend/src/modules/columns/dto/req/update-column.req.dto.ts
+backend/src/modules/columns/dto/res/column.res.dto.ts
+backend/tsconfig.build.json
+backend/tsconfig.json
+frontend/.gitignore
+frontend/app/boards/[id]/page.tsx
+frontend/app/boards/page.tsx
+frontend/app/components/AuthContext.tsx
+frontend/app/components/Board.tsx
+frontend/app/components/BoardList.tsx
+frontend/app/components/Card.tsx
+frontend/app/components/Column.tsx
+frontend/app/components/LoginForm.tsx
+frontend/app/components/NavBar.tsx
+frontend/app/components/RegisterForm.tsx
+frontend/app/components/ui/Breadcrumbs.tsx
+frontend/app/components/ui/Button.tsx
+frontend/app/components/ui/DropdownMenu.tsx
+frontend/app/components/ui/ErrorMessage.tsx
+frontend/app/components/ui/Input.tsx
+frontend/app/components/ui/Loader.tsx
+frontend/app/components/ui/Modal.tsx
+frontend/app/globals.css
+frontend/app/layout.tsx
+frontend/app/lib/api.ts
+frontend/app/lib/interceptors.ts
+frontend/app/login/page.tsx
+frontend/app/page.tsx
+frontend/app/register/page.tsx
+frontend/app/types/index.ts
+frontend/app/types/RegEx.ts
+frontend/eslint.config.mjs
+frontend/next.config.ts
+frontend/package.json
+frontend/postcss.config.mjs
+frontend/README.md
+frontend/tailwind.config.js
+frontend/tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="backend/.gitignore">
+# compiled output
+/dist
+/node_modules
+/build
+/generated
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+/generated/prisma
+/generated/
+</file>
+
+<file path="backend/.prettierrc">
+{
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+</file>
+
+<file path="backend/eslint.config.mjs">
+// @ts-check
+import pluginJs from '@eslint/js';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
+import prettierPlugin from 'eslint-plugin-prettier';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import globals from 'globals';
+
+export default [
+  {
+    files: ['**/*.{ts,js}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.json',
+        ecmaVersion: 2021,
+        sourceType: 'module',
+      },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.jest,
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      prettier: prettierPlugin,
+      'simple-import-sort': simpleImportSort,
+      import: importPlugin,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          args: 'after-used',
+          ignoreRestSiblings: true,
+          varsIgnorePattern: '^_',
+        },
+      ],
+      '@typescript-eslint/interface-name-prefix': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/return-await': ['error', 'always'],
+      'simple-import-sort/imports': 'error',
+      'import/first': 'error',
+      'import/newline-after-import': ['error', { count: 1 }],
+      'import/no-duplicates': 'error',
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
+      // 'no-console': 'warn',
+      'sort-imports': [
+        'error',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+          allowSeparatedGroups: false,
+        },
+      ],
+      'max-len': ['error', { code: 120 }],
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    languageOptions: {
+      sourceType: 'commonjs',
+    },
+  },
+  pluginJs.configs.recommended,
+  {
+    ignores: [
+      'eslint.config.mjs',
+      '**/*.generated.ts',
+      '**/migrations/*.ts',
+      'dist/',
+      '.idea/',
+      '.husky/',
+      'node_modules/',
+      '.git/',
+      '*.config.js',
+      '*.xml5',
+      '*.iml',
+      '.gitignore',
+    ],
+  },
+];
+</file>
+
+<file path="backend/nest-cli.json">
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true
+  }
+}
+</file>
+
+<file path="backend/prisma/migrations/20250915175252_add_initial_models/migration.sql">
+-- CreateTable
+CREATE TABLE "public"."User" (
+    "id" SERIAL NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."Board" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" INTEGER NOT NULL,
+
+    CONSTRAINT "Board_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."Column" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "order" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "boardId" INTEGER NOT NULL,
+
+    CONSTRAINT "Column_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "public"."Card" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "order" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "columnId" INTEGER NOT NULL,
+
+    CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");
+
+-- AddForeignKey
+ALTER TABLE "public"."Board" ADD CONSTRAINT "Board_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."Column" ADD CONSTRAINT "Column_boardId_fkey" FOREIGN KEY ("boardId") REFERENCES "public"."Board"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "public"."Card" ADD CONSTRAINT "Card_columnId_fkey" FOREIGN KEY ("columnId") REFERENCES "public"."Column"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+</file>
+
+<file path="backend/prisma/migrations/20250916121600_update_user_id_and_fields/migration.sql">
+/*
+  Warnings:
+
+  - The primary key for the `User` table will be changed. If it partially fails, the table could be left without primary key constraint.
+  - Added the required column `name` to the `User` table without a default value. This is not possible if the table is not empty.
+  - Added the required column `surname` to the `User` table without a default value. This is not possible if the table is not empty.
+
+*/
+-- DropForeignKey
+ALTER TABLE "public"."Board" DROP CONSTRAINT "Board_userId_fkey";
+
+-- AlterTable
+ALTER TABLE "public"."Board" ALTER COLUMN "userId" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "public"."User" DROP CONSTRAINT "User_pkey",
+ADD COLUMN     "name" TEXT NOT NULL,
+ADD COLUMN     "surname" TEXT NOT NULL,
+ALTER COLUMN "id" DROP DEFAULT,
+ALTER COLUMN "id" SET DATA TYPE TEXT,
+ADD CONSTRAINT "User_pkey" PRIMARY KEY ("id");
+DROP SEQUENCE "User_id_seq";
+
+-- AddForeignKey
+ALTER TABLE "public"."Board" ADD CONSTRAINT "Board_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+</file>
+
+<file path="backend/prisma/migrations/20250919084359_changed_model_user/migration.sql">
+/*
+  Warnings:
+
+  - You are about to drop the column `surname` on the `User` table. All the data in the column will be lost.
+
+*/
+-- AlterTable
+ALTER TABLE "public"."User" DROP COLUMN "surname";
+</file>
+
+<file path="backend/prisma/migrations/20250924113643_add_order_board/migration.sql">
+-- AlterTable
+ALTER TABLE "public"."Board" ADD COLUMN     "order" INTEGER NOT NULL DEFAULT 0;
+</file>
+
+<file path="backend/prisma/migrations/migration_lock.toml">
+# Please do not edit this file manually
+# It should be added in your version-control system (e.g., Git)
+provider = "postgresql"
+</file>
+
+<file path="backend/prisma/migrations/prisma.module.ts">
+import { Module } from '@nestjs/common';
+import { PrismaService } from './prisma.service';
+
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class PrismaModule {}
+</file>
+
+<file path="backend/prisma/migrations/prisma.service.ts">
+import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import { PrismaClient } from '@prisma/client';
+
+@Injectable()
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
+  constructor() {
+    super({
+      log: ['query', 'info', 'warn', 'error'],
+    });
+  }
+
+  async onModuleInit() {
+    await this.$connect();
+  }
+
+  async onModuleDestroy() {
+    await this.$disconnect();
+  }
+}
+</file>
+
+<file path="backend/prisma/schema.prisma">
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+  name     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  boards Board[]
+}
+
+model Board {
+  id    Int    @id @default(autoincrement())
+  title String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  order   Int      @default(0)
+  columns Column[]
+}
+
+model Column {
+  id    Int    @id @default(autoincrement())
+  title String
+  order Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  boardId Int
+  board   Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  cards Card[]
+}
+
+model Card {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  order       Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  columnId Int
+  column   Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
+}
+</file>
+
+<file path="backend/README.md">
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
+
+[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
+[circleci-url]: https://circleci.com/gh/nestjs/nest
+
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+
+## Description
+
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## Project setup
+
+```bash
+$ npm install
+```
+
+## Compile and run the project
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Run tests
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+## Deployment
+
+When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+
+If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+
+```bash
+$ npm install -g mau
+$ mau deploy
+```
+
+With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+
+## Resources
+
+Check out a few resources that may come in handy when working with NestJS:
+
+- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
+- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
+- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
+- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
+- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
+- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
+- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
+- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+
+## Support
+
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+
+## Stay in touch
+
+- Author - [Kamil MyÅ›liwiec](https://twitter.com/kammysliwiec)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## License
+
+Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+</file>
+
+<file path="backend/src/app.controller.ts">
+import { Controller, Get } from '@nestjs/common';
+
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+</file>
+
+<file path="backend/src/app.module.ts">
+import { Module } from '@nestjs/common';
+
+import { PrismaModule } from '../prisma/migrations/prisma.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './modules/auth/auth.module';
+import { BoardsModule } from './modules/boards/boards.module';
+import { CardsModule } from './modules/cards/cards.module';
+import { ColumnsModule } from './modules/columns/columns.module';
+
+@Module({
+  imports: [PrismaModule, AuthModule, BoardsModule, ColumnsModule, CardsModule],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: LoggingInterceptor,
+    // },
+  ],
+})
+export class AppModule {}
+</file>
+
+<file path="backend/src/app.service.ts">
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return 'Hello World!';
+  }
+}
+</file>
+
+<file path="backend/src/common/interseptors/loggin.interseptor.ts">
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  Logger,
+  NestInterceptor,
+} from '@nestjs/common';
+import { Request, Response } from 'express';
+import { catchError, Observable, tap } from 'rxjs';
+
+function maskSensitive(
+  obj: Record<string, any>,
+  keysToMask: string[] = ['password', 'token', 'refreshToken'],
+): Record<string, any> {
+  if (!obj || typeof obj !== 'object') return obj;
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) =>
+      keysToMask.includes(key.toLowerCase())
+        ? [key, '***hidden***']
+        : [key, value],
+    ),
+  );
+}
+
+@Injectable()
+export class LoggingInterceptor implements NestInterceptor {
+  private readonly logger = new Logger('HTTP');
+
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const req = context.switchToHttp().getRequest<Request>();
+    const res = context.switchToHttp().getResponse<Response>();
+
+    const { method, originalUrl, body, headers } = req;
+    const start = Date.now();
+
+    this.logger.log(
+      // eslint-disable-next-line max-len
+      `Incoming Request: ${method} ${originalUrl} | Body: ${JSON.stringify(maskSensitive(body))} | Headers: ${JSON.stringify(maskSensitive(headers))}`,
+    );
+
+    return next.handle().pipe(
+      tap((data) => {
+        const duration = Date.now() - start;
+        const statusCode: number = res.statusCode;
+
+        this.logger.log(
+          // eslint-disable-next-line max-len
+          `Response: ${method} ${originalUrl} | Status: ${statusCode} | Duration: ${duration}ms | Response Body: ${JSON.stringify(maskSensitive(data))}`,
+        );
+      }),
+      catchError((err) => {
+        const duration = Date.now() - start;
+        const statusCode: number = res.statusCode;
+
+        this.logger.error(
+          // eslint-disable-next-line max-len
+          `Error: ${method} ${originalUrl} | Status: ${statusCode} | Duration: ${duration}ms | Message: ${err?.message}`,
+          err?.stack,
+        );
+        throw err;
+      }),
+    );
+  }
+}
+</file>
+
+<file path="backend/src/common/middlewares/logger.middleware.ts">
+import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
+import { NextFunction, Request, Response } from 'express';
+
+@Injectable()
+export class LoggerMiddleware implements NestMiddleware {
+  private readonly logger = new Logger('HTTP');
+
+  use(req: Request, res: Response, next: NextFunction) {
+    const {
+      method,
+      originalUrl,
+      body,
+      headers,
+    }: {
+      method: string;
+      originalUrl: string;
+      body: unknown;
+      headers: unknown;
+    } = req;
+    const start = Date.now();
+
+    this.logger.log(
+      `Incoming Request: ${method} ${originalUrl} | Body: ${JSON.stringify(body)} | Headers: ${JSON.stringify(headers)}`,
+    );
+
+    res.on('finish', () => {
+      const duration = Date.now() - start;
+      this.logger.log(
+        `Response: ${method} ${originalUrl} | Status: ${res.statusCode} | Duration: ${duration}ms`,
+      );
+    });
+
+    next();
+  }
+}
+</file>
+
+<file path="backend/src/modules/auth/auth.controller.ts">
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { Request, Response } from 'express';
+
+import { LoginReqDto } from './dto/req/login.req.dto';
+import { RegisterReqDto } from './dto/req/register.req.dto';
+import { AuthResDto } from './dto/res/auth.res.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { AuthService } from './services/auth.service';
+
+@ApiTags('auth')
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
+
+  private getCookieOptions() {
+    const isProd = process.env.NODE_ENV === 'production';
+    return {
+      httpOnly: true,
+      secure: isProd, // secure cookies only in production (requires HTTPS)
+      sameSite: isProd ? ('none' as const) : ('lax' as const),
+    };
+  }
+
+  private setAuthCookies(
+    res: Response,
+    tokens: { accessToken: string; refreshToken: string },
+  ) {
+    const cookieOptions = {
+      ...this.getCookieOptions(),
+      maxAge: 60 * 60 * 1000, // 1h
+    };
+    res.cookie('accessToken', tokens.accessToken, cookieOptions);
+    res.cookie('refreshToken', tokens.refreshToken, {
+      ...this.getCookieOptions(),
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
+    });
+  }
+
+  @Post('register')
+  async register(
+    @Body() dto: RegisterReqDto,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<AuthResDto> {
+    const authRes = await this.authService.register(dto);
+    this.setAuthCookies(res, authRes.tokens);
+    return authRes;
+  }
+
+  @Post('login')
+  async login(
+    @Body() dto: LoginReqDto,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<AuthResDto> {
+    const authRes = await this.authService.login(dto);
+    this.setAuthCookies(res, authRes.tokens);
+    return authRes;
+  }
+
+  @Post('refresh')
+  async refresh(
+    @Req() req: Request,
+    @Res({ passthrough: true }) res: Response,
+  ) {
+    const refreshToken = req.cookies['refreshToken'];
+    if (!refreshToken) {
+      throw new UnauthorizedException('Refresh token not found');
+    }
+    const newTokens = await this.authService.refresh(refreshToken);
+    // set new access token cookie (same options)
+    res.cookie('accessToken', newTokens.accessToken, {
+      ...this.getCookieOptions(),
+      maxAge: 60 * 60 * 1000,
+    });
+    return { accessToken: newTokens.accessToken };
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  async getMe(@Req() req: Request) {
+    const userId = (req.user as { userId: string })?.userId;
+
+    const user = await this.authService.getUserById(userId);
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+    };
+  }
+
+  @Get('logout')
+  logout(@Res({ passthrough: true }) res: Response) {
+    const cookieOptions = this.getCookieOptions();
+    res.clearCookie('accessToken', cookieOptions);
+    res.clearCookie('refreshToken', cookieOptions);
+    return { message: 'Logged out' };
+  }
+}
+</file>
+
+<file path="backend/src/modules/auth/auth.module.ts">
+import { Module } from '@nestjs/common';
+import { AuthController } from './auth.controller';
+import { PrismaModule } from '../../../prisma/migrations/prisma.module';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthService } from './services/auth.service';
+import { JwtStrategy } from './services/jwt.strategy';
+
+@Module({
+  imports: [
+    PrismaModule,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET || 'ghfhkj',
+      signOptions: { expiresIn: '60m' },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}
+</file>
+
+<file path="backend/src/modules/auth/dto/req/login.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class LoginReqDto {
+  @ApiProperty({ example: 'user@example.com', description: 'User email' })
+  email: string;
+
+  @ApiProperty({ example: 'password123', description: 'User password' })
+  password: string;
+}
+</file>
+
+<file path="backend/src/modules/auth/dto/req/register.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class RegisterReqDto {
+  @ApiProperty({ example: 'user@example.com', description: 'User email' })
+  email: string;
+
+  @ApiProperty({ example: 'password123', description: 'User password' })
+  password: string;
+
+  @ApiProperty({ example: 'John', description: 'User first name' })
+  name: string;
+
+  @ApiProperty({ example: 'Doe', description: 'User last name' })
+  surname: string;
+}
+</file>
+
+<file path="backend/src/modules/auth/dto/res/auth.res.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+import { TokenPairResDto } from './token-pair.res.dto';
+import { UserResDto } from './user.res.dto';
+
+export class AuthResDto {
+  @ApiProperty({
+    description: 'User details',
+    type: UserResDto,
+  })
+  user: UserResDto;
+
+  @ApiProperty({
+    description: 'Token pair for authentication',
+    type: TokenPairResDto,
+  })
+  tokens: TokenPairResDto;
+}
+</file>
+
+<file path="backend/src/modules/auth/dto/res/base-user.res.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class BaseUserResDto {
+  @ApiProperty()
+  id: string;
+
+  @ApiProperty()
+  email: string;
+
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
+}
+</file>
+
+<file path="backend/src/modules/auth/dto/res/token-pair.res.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class TokenPairResDto {
+  @ApiProperty({
+    description: 'Access token for authenticated requests',
+    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+  })
+  accessToken: string;
+
+  @ApiProperty({
+    description: 'Refresh token to renew access token',
+    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',
+  })
+  refreshToken: string;
+}
+</file>
+
+<file path="backend/src/modules/auth/dto/res/user.res.dto.ts">
+import { PickType } from '@nestjs/swagger';
+
+import { BaseUserResDto } from './base-user.res';
+
+export class UserResDto extends PickType(BaseUserResDto, [
+  'id',
+  'email',
+  'name',
+  'createdAt',
+  'updatedAt',
+]) {}
+</file>
+
+<file path="backend/src/modules/auth/guards/jwt-auth.guard.ts">
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+
+@Injectable()
+export class JwtAuthGuard extends AuthGuard('jwt') {}
+</file>
+
+<file path="backend/src/modules/auth/services/auth.service.ts">
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
+
+import { PrismaService } from '../../../../prisma/migrations/prisma.service';
+import { LoginReqDto } from '../dto/req/login.req.dto';
+import { RegisterReqDto } from '../dto/req/register.req.dto';
+import { AuthResDto } from '../dto/res/auth.res.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
+
+  async register(dto: RegisterReqDto): Promise<AuthResDto> {
+    const { email, password, name } = dto;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email },
+    });
+    if (existingUser) {
+      throw new UnauthorizedException('User with this email already exists');
+    }
+    const user = await this.prisma.user.create({
+      data: { email, password: hashedPassword, name},
+    });
+    const tokens = this.generateTokens(user);
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      tokens,
+    };
+  }
+
+  async login(dto: LoginReqDto): Promise<AuthResDto> {
+    const { email, password } = dto;
+
+    const user = await this.prisma.user.findUnique({ where: { email } });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    const tokens = this.generateTokens(user);
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      tokens,
+    };
+  }
+
+  private generateTokens(user: { id: string; email: string }) {
+    const payload = { email: user.email, sub: user.id };
+    return {
+      accessToken: this.jwtService.sign(payload, { expiresIn: '60m' }),
+      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+    };
+  }
+
+  async refresh(refreshToken: string): Promise<{ accessToken: string }> {
+    try {
+      const payload = this.jwtService.verify(refreshToken);
+      const accessToken = this.jwtService.sign(
+        { email: payload.email, sub: payload.sub },
+        { expiresIn: '60m' },
+      );
+      return { accessToken };
+    } catch (err) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
+  }
+
+  async getUserById(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    return user;
+  }
+}
+</file>
+
+<file path="backend/src/modules/auth/services/jwt.strategy.ts">
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { Request } from 'express';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+
+import { PrismaService } from '../../../../prisma/migrations/prisma.service';
+
+@Injectable()
+export class JwtStrategy extends PassportStrategy(Strategy) {
+  constructor(private prisma: PrismaService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: Request) => {
+          return (
+            request?.cookies?.['accessToken'] ||
+            ExtractJwt.fromAuthHeaderAsBearerToken()(request)
+          );
+        },
+      ]),
+      ignoreExpiration: false,
+      secretOrKey: process.env.JWT_SECRET || 'ghfhkj',
+    });
+  }
+
+  async validate(payload: { sub: string; email: string }) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: payload.sub },
+    });
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    return { userId: payload.sub, email: payload.email };
+  }
+}
+</file>
+
+<file path="backend/src/modules/boards/boards.controller.ts">
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { BoardsService } from './boards.service';
+import { CreateBoardDto } from './dto/req/create-board.req.dto';
+import { UpdateBoardDto } from './dto/req/update-board.req.dto';
+import { BoardResDto } from './dto/res/board.res.dto';
+
+@ApiTags('boards')
+@Controller('boards')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+export class BoardsController {
+  constructor(private readonly boardsService: BoardsService) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Create a new board' })
+  @ApiResponse({ status: 201, description: 'Board created', type: BoardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async create(
+    @Body() createBoardDto: CreateBoardDto,
+    @Request() req: any,
+  ): Promise<BoardResDto> {
+    return await this.boardsService.create(createBoardDto, req.user.userId);
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Get all boards for the user' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of boards',
+    type: [BoardResDto],
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async findAll(@Request() req: any): Promise<BoardResDto[]> {
+    return await this.boardsService.findAll(req.user.userId);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a board by ID' })
+  @ApiResponse({ status: 200, description: 'Board details', type: BoardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 404, description: 'Board not found' })
+  async findOne(
+    @Param('id') id: string,
+    @Request() req: any,
+  ): Promise<BoardResDto> {
+    return await this.boardsService.findOne(+id, req.user.userId);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update a board' })
+  @ApiResponse({ status: 200, description: 'Updated board', type: BoardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 404, description: 'Board not found' })
+  async update(
+    @Param('id') id: string,
+    @Body() updateBoardDto: UpdateBoardDto,
+    @Request() req: any,
+  ): Promise<BoardResDto> {
+    return await this.boardsService.update(
+      +id,
+      updateBoardDto,
+      req.user.userId,
+    );
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete a board' })
+  @ApiResponse({ status: 200, description: 'Board deleted' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 404, description: 'Board not found' })
+  async remove(@Param('id') id: string, @Request() req: any): Promise<void> {
+    return await this.boardsService.remove(+id, req.user.userId);
+  }
+}
+</file>
+
+<file path="backend/src/modules/boards/boards.module.ts">
+import { Module } from '@nestjs/common';
+
+import { PrismaModule } from '../../../prisma/migrations/prisma.module';
+import { BoardsController } from './boards.controller';
+import { BoardsService } from './boards.service';
+
+@Module({
+  imports: [PrismaModule],
+  controllers: [BoardsController],
+  providers: [BoardsService],
+})
+export class BoardsModule {}
+</file>
+
+<file path="backend/src/modules/boards/boards.service.ts">
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { PrismaService } from '../../../prisma/migrations/prisma.service';
+import { CreateBoardDto } from './dto/req/create-board.req.dto';
+import { UpdateBoardDto } from './dto/req/update-board.req.dto';
+import { BoardResDto } from './dto/res/board.res.dto';
+
+@Injectable()
+export class BoardsService {
+  constructor(private prisma: PrismaService) {}
+
+  async create(
+    createBoardDto: CreateBoardDto,
+    userId: string,
+  ): Promise<BoardResDto> {
+    return await this.prisma.board.create({
+      data: {
+        title: createBoardDto.title,
+        userId,
+      },
+    });
+  }
+
+  async findAll(userId: string): Promise<BoardResDto[]> {
+    return await this.prisma.board.findMany({
+      where: { userId },
+    });
+  }
+
+  async findOne(id: number, userId: string): Promise<BoardResDto> {
+    const board = await this.prisma.board.findUnique({
+      where: { id },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${id} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+    return board;
+  }
+
+  async update(
+    id: number,
+    updateBoardDto: UpdateBoardDto,
+    userId: string,
+  ): Promise<BoardResDto> {
+    const board = await this.prisma.board.findUnique({
+      where: { id },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${id} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+    return await this.prisma.board.update({
+      where: { id },
+      data: updateBoardDto,
+    });
+  }
+
+  async remove(id: number, userId: string): Promise<void> {
+    const board = await this.prisma.board.findUnique({
+      where: { id },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${id} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+    await this.prisma.board.delete({
+      where: { id },
+    });
+  }
+}
+</file>
+
+<file path="backend/src/modules/boards/dto/req/create-board.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
+
+export class CreateBoardDto {
+  @ApiProperty({
+    example: 'My Project Board',
+    description: 'Title of the board',
+  })
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+}
+</file>
+
+<file path="backend/src/modules/boards/dto/req/update-board.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsString } from 'class-validator';
+
+export class UpdateBoardDto {
+  @ApiProperty({
+    example: 'Updated Project Board',
+    description: 'Updated title of the board',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  title?: string;
+}
+</file>
+
+<file path="backend/src/modules/boards/dto/res/board.res.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class BoardResDto {
+  @ApiProperty({ example: 1, description: 'ID of the board' })
+  id: number;
+
+  @ApiProperty({
+    example: 'My Project Board',
+    description: 'Title of the board',
+  })
+  title: string;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Creation date',
+  })
+  createdAt: Date;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Last update date',
+  })
+  updatedAt: Date;
+
+  @ApiProperty({
+    example: 'uuid-string',
+    description: 'ID of the user who owns the board',
+  })
+  userId: string;
+
+  @ApiProperty({ example: 1, description: 'Order of the board' })
+  order: number | null;
+}
+</file>
+
+<file path="backend/src/modules/cards/cards.controller.ts">
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CardsService } from './cards.service';
+import { CreateCardDto } from './dto/req/create-card.req.dto';
+import { UpdateCardDto } from './dto/req/update-card.req.dto';
+import { CardResDto } from './dto/res/card.res.dto';
+
+@ApiTags('cards')
+@Controller('boards/:boardId/columns/:columnId/cards')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+export class CardsController {
+  constructor(private readonly cardsService: CardsService) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Create a new card in a column' })
+  @ApiResponse({ status: 201, description: 'Card created', type: CardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board or column not found' })
+  async create(
+    @Param('boardId') boardId: string,
+    @Param('columnId') columnId: string,
+    @Body() createCardDto: CreateCardDto,
+    @Request() req: any,
+  ): Promise<CardResDto> {
+    return await this.cardsService.create(
+      +boardId,
+      +columnId,
+      createCardDto,
+      req.user.userId,
+    );
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Get all cards in a column' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of cards',
+    type: [CardResDto],
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board or column not found' })
+  async findAll(
+    @Param('boardId') boardId: string,
+    @Param('columnId') columnId: string,
+    @Request() req: any,
+  ): Promise<CardResDto[]> {
+    return await this.cardsService.findAll(
+      +boardId,
+      +columnId,
+      req.user.userId,
+    );
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a card by ID' })
+  @ApiResponse({ status: 200, description: 'Card details', type: CardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board, column, or card not found' })
+  async findOne(
+    @Param('boardId') boardId: string,
+    @Param('columnId') columnId: string,
+    @Param('id') id: string,
+    @Request() req: any,
+  ): Promise<CardResDto> {
+    return await this.cardsService.findOne(
+      +boardId,
+      +columnId,
+      +id,
+      req.user.userId,
+    );
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update a card' })
+  @ApiResponse({ status: 200, description: 'Updated card', type: CardResDto })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board, column, or card not found' })
+  async update(
+    @Param('boardId') boardId: string,
+    @Param('columnId') columnId: string,
+    @Param('id') id: string,
+    @Body() updateCardDto: UpdateCardDto,
+    @Request() req: any,
+  ): Promise<CardResDto> {
+    return await this.cardsService.update(
+      +boardId,
+      +columnId,
+      +id,
+      updateCardDto,
+      req.user.userId,
+    );
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete a card' })
+  @ApiResponse({ status: 200, description: 'Card deleted' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board, column, or card not found' })
+  async remove(
+    @Param('boardId') boardId: string,
+    @Param('columnId') columnId: string,
+    @Param('id') id: string,
+    @Request() req: any,
+  ): Promise<void> {
+    return await this.cardsService.remove(
+      +boardId,
+      +columnId,
+      +id,
+      req.user.userId,
+    );
+  }
+}
+</file>
+
+<file path="backend/src/modules/cards/cards.module.ts">
+import { Module } from '@nestjs/common';
+
+import { PrismaModule } from '../../../prisma/migrations/prisma.module';
+import { CardsController } from './cards.controller';
+import { CardsService } from './cards.service';
+
+@Module({
+  imports: [PrismaModule],
+  controllers: [CardsController],
+  providers: [CardsService],
+})
+export class CardsModule {}
+</file>
+
+<file path="backend/src/modules/cards/cards.service.ts">
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { PrismaService } from '../../../prisma/migrations/prisma.service';
+import { CreateCardDto } from './dto/req/create-card.req.dto';
+import { UpdateCardDto } from './dto/req/update-card.req.dto';
+import { CardResDto } from './dto/res/card.res.dto';
+
+@Injectable()
+export class CardsService {
+  constructor(private prisma: PrismaService) {}
+
+  private async validateBoardAndColumn(
+    boardId: number,
+    columnId: number,
+    userId: string,
+  ) {
+    const board = await this.prisma.board.findUnique({
+      where: { id: boardId },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${boardId} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+    const column = await this.prisma.column.findUnique({
+      where: { id: columnId },
+    });
+    if (!column || column.boardId !== boardId) {
+      throw new NotFoundException(
+        `Column with ID ${columnId} not found in board ${boardId}`,
+      );
+    }
+    return { board, column };
+  }
+
+  async create(
+    boardId: number,
+    columnId: number,
+    createCardDto: CreateCardDto,
+    userId: string,
+  ): Promise<CardResDto> {
+    await this.validateBoardAndColumn(boardId, columnId, userId);
+    return await this.prisma.card.create({
+      data: {
+        title: createCardDto.title,
+        description: createCardDto.description,
+        order: createCardDto.order,
+        columnId,
+      },
+    });
+  }
+
+  async findAll(
+    boardId: number,
+    columnId: number,
+    userId: string,
+  ): Promise<CardResDto[]> {
+    await this.validateBoardAndColumn(boardId, columnId, userId);
+    return await this.prisma.card.findMany({
+      where: { columnId },
+      orderBy: { order: 'asc' },
+    });
+  }
+
+  async findOne(
+    boardId: number,
+    columnId: number,
+    id: number,
+    userId: string,
+  ): Promise<CardResDto> {
+    await this.validateBoardAndColumn(boardId, columnId, userId);
+    const card = await this.prisma.card.findUnique({
+      where: { id },
+    });
+    if (!card || card.columnId !== columnId) {
+      throw new NotFoundException(
+        `Card with ID ${id} not found in column ${columnId}`,
+      );
+    }
+    return card;
+  }
+
+  async update(
+    boardId: number,
+    columnId: number,
+    id: number,
+    updateCardDto: UpdateCardDto,
+    userId: string,
+  ): Promise<CardResDto> {
+    // 1) Validate board ownership
+    const board = await this.prisma.board.findUnique({
+      where: { id: boardId },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${boardId} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+
+    // 2) Load card with its column to validate it belongs to the same board
+    const card = await this.prisma.card.findUnique({
+      where: { id },
+      include: { column: true },
+    });
+
+    if (!card) {
+      throw new NotFoundException(`Card with ID ${id} not found`);
+    }
+
+    if (!card.column || card.column.boardId !== boardId) {
+      // card exists but belongs to another board -> not allowed
+      throw new NotFoundException(
+        `Card with ID ${id} not found in board ${boardId}`,
+      );
+    }
+
+    // 3) If move requested (columnId provided and different), validate target column belongs to board
+    if (
+      updateCardDto.columnId !== undefined &&
+      updateCardDto.columnId !== card.columnId
+    ) {
+      const targetColumn = await this.prisma.column.findUnique({
+        where: { id: updateCardDto.columnId },
+      });
+      if (!targetColumn || targetColumn.boardId !== boardId) {
+        throw new NotFoundException(
+          `Target column with ID ${updateCardDto.columnId} not found in board ${boardId}`,
+        );
+      }
+    }
+
+    // 4) Perform update (allow changing columnId and/or order and other fields)
+    return await this.prisma.card.update({
+      where: { id },
+      data: {
+        title: updateCardDto.title ?? undefined,
+        description: updateCardDto.description ?? undefined,
+        order: updateCardDto.order ?? undefined,
+        columnId: updateCardDto.columnId ?? undefined,
+      },
+    });
+  }
+
+  async remove(
+    boardId: number,
+    columnId: number,
+    id: number,
+    userId: string,
+  ): Promise<void> {
+    await this.validateBoardAndColumn(boardId, columnId, userId);
+    const card = await this.prisma.card.findUnique({
+      where: { id },
+    });
+    if (!card || card.columnId !== columnId) {
+      throw new NotFoundException(
+        `Card with ID ${id} not found in column ${columnId}`,
+      );
+    }
+    await this.prisma.card.delete({
+      where: { id },
+    });
+  }
+}
+</file>
+
+<file path="backend/src/modules/cards/dto/req/create-card.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsNotEmpty, IsOptional, IsString, Min } from 'class-validator';
+
+export class CreateCardDto {
+  @ApiProperty({
+    example: 'Implement feature X',
+    description: 'Title of the card',
+  })
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @ApiProperty({
+    example: 'Add feature X to the project',
+    description: 'Description of the card',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  description?: string;
+
+  @ApiProperty({ example: 1, description: 'Order of the card in the column' })
+  @IsInt()
+  @Min(0)
+  order: number;
+}
+</file>
+
+<file path="backend/src/modules/cards/dto/req/update-card.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsOptional, IsString, Min } from 'class-validator';
+
+export class UpdateCardDto {
+  @ApiProperty({
+    example: 'Update feature X',
+    description: 'Updated title of the card',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  title?: string;
+
+  @ApiProperty({
+    example: 'Updated description for feature X',
+    description: 'Updated description of the card',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  description?: string;
+
+  @ApiProperty({
+    example: 2,
+    description: 'Updated order of the card',
+    required: false,
+  })
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  order?: number;
+
+  @ApiProperty({
+    example: 3,
+    description: 'Move card to another column (column id)',
+    required: false,
+  })
+  @IsInt()
+  @IsOptional()
+  columnId?: number;
+}
+</file>
+
+<file path="backend/src/modules/cards/dto/res/card.res.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CardResDto {
+  @ApiProperty({ example: 1, description: 'ID of the card' })
+  id: number;
+
+  @ApiProperty({
+    example: 'Implement feature X',
+    description: 'Title of the card',
+  })
+  title: string;
+
+  @ApiProperty({
+    example: 'Add feature X to the project',
+    description: 'Description of the card',
+    nullable: true,
+  })
+  description: string | null;
+
+  @ApiProperty({ example: 1, description: 'Order of the card in the column' })
+  order: number;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Creation date',
+  })
+  createdAt: Date;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Last update date',
+  })
+  updatedAt: Date;
+
+  @ApiProperty({
+    example: 1,
+    description: 'ID of the column the card belongs to',
+  })
+  columnId: number;
+}
+</file>
+
+<file path="backend/src/modules/columns/columns.controller.ts">
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { ColumnsService } from './columns.service';
+import { CreateColumnDto } from './dto/req/create-column.req.dto';
+import { UpdateColumnDto } from './dto/req/update-column.req.dto';
+import { ColumnResDto } from './dto/res/column.res.dto';
+
+@ApiTags('columns')
+@Controller('boards/:boardId/columns')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
+export class ColumnsController {
+  constructor(private readonly columnsService: ColumnsService) {}
+
+  @Post()
+  @ApiOperation({ summary: 'Create a new column in a board' })
+  @ApiResponse({
+    status: 201,
+    description: 'Column created',
+    type: ColumnResDto,
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board not found' })
+  async create(
+    @Param('boardId') boardId: string,
+    @Body() createColumnDto: CreateColumnDto,
+    @Request() req: any,
+  ): Promise<ColumnResDto> {
+    return await this.columnsService.create(
+      +boardId,
+      createColumnDto,
+      req.user.userId,
+    );
+  }
+
+  @Get()
+  @ApiOperation({ summary: 'Get all columns in a board' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of columns',
+    type: [ColumnResDto],
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board not found' })
+  async findAll(
+    @Param('boardId') boardId: string,
+    @Request() req: any,
+  ): Promise<ColumnResDto[]> {
+    return await this.columnsService.findAll(+boardId, req.user.userId);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a column by ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'Column details',
+    type: ColumnResDto,
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board or column not found' })
+  async findOne(
+    @Param('boardId') boardId: string,
+    @Param('id') id: string,
+    @Request() req: any,
+  ): Promise<ColumnResDto> {
+    return await this.columnsService.findOne(+boardId, +id, req.user.userId);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update a column' })
+  @ApiResponse({
+    status: 200,
+    description: 'Updated column',
+    type: ColumnResDto,
+  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board or column not found' })
+  async update(
+    @Param('boardId') boardId: string,
+    @Param('id') id: string,
+    @Body() updateColumnDto: UpdateColumnDto,
+    @Request() req: any,
+  ): Promise<ColumnResDto> {
+    return await this.columnsService.update(
+      +boardId,
+      +id,
+      updateColumnDto,
+      req.user.userId,
+    );
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete a column' })
+  @ApiResponse({ status: 200, description: 'Column deleted' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiResponse({ status: 403, description: 'Forbidden' })
+  @ApiResponse({ status: 404, description: 'Board or column not found' })
+  async remove(
+    @Param('boardId') boardId: string,
+    @Param('id') id: string,
+    @Request() req: any,
+  ): Promise<void> {
+    return await this.columnsService.remove(+boardId, +id, req.user.userId);
+  }
+}
+</file>
+
+<file path="backend/src/modules/columns/columns.module.ts">
+import { Module } from '@nestjs/common';
+
+import { PrismaModule } from '../../../prisma/migrations/prisma.module';
+import { ColumnsController } from './columns.controller';
+import { ColumnsService } from './columns.service';
+
+@Module({
+  imports: [PrismaModule],
+  controllers: [ColumnsController],
+  providers: [ColumnsService],
+})
+export class ColumnsModule {}
+</file>
+
+<file path="backend/src/modules/columns/columns.service.ts">
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { PrismaService } from '../../../prisma/migrations/prisma.service';
+import { CreateColumnDto } from './dto/req/create-column.req.dto';
+import { UpdateColumnDto } from './dto/req/update-column.req.dto';
+import { ColumnResDto } from './dto/res/column.res.dto';
+
+@Injectable()
+export class ColumnsService {
+  constructor(private prisma: PrismaService) {}
+
+  private async validateBoard(boardId: number, userId: string) {
+    const board = await this.prisma.board.findUnique({
+      where: { id: boardId },
+    });
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${boardId} not found`);
+    }
+    if (board.userId !== userId) {
+      throw new ForbiddenException('You do not have access to this board');
+    }
+    return board;
+  }
+
+  private async validateColumn(boardId: number, columnId: number) {
+    const column = await this.prisma.column.findUnique({
+      where: { id: columnId },
+      include: { cards: { orderBy: { order: 'asc' } } },
+    });
+    if (!column || column.boardId !== boardId) {
+      throw new NotFoundException(
+        `Column with ID ${columnId} not found in board ${boardId}`,
+      );
+    }
+    return column;
+  }
+
+  async create(
+    boardId: number,
+    createColumnDto: CreateColumnDto,
+    userId: string,
+  ): Promise<ColumnResDto> {
+    await this.validateBoard(boardId, userId);
+    // return the created column including empty cards array
+    return await this.prisma.column.create({
+      data: {
+        title: createColumnDto.title,
+        order: createColumnDto.order,
+        boardId,
+      },
+      include: { cards: { orderBy: { order: 'asc' } } },
+    });
+  }
+
+  async findAll(boardId: number, userId: string): Promise<ColumnResDto[]> {
+    await this.validateBoard(boardId, userId);
+    return await this.prisma.column.findMany({
+      where: { boardId },
+      orderBy: { order: 'asc' },
+      include: { cards: { orderBy: { order: 'asc' } } },
+    });
+  }
+
+  async findOne(
+    boardId: number,
+    id: number,
+    userId: string,
+  ): Promise<ColumnResDto> {
+    await this.validateBoard(boardId, userId);
+    return await this.validateColumn(boardId, id);
+  }
+
+  async update(
+    boardId: number,
+    id: number,
+    updateColumnDto: UpdateColumnDto,
+    userId: string,
+  ): Promise<ColumnResDto> {
+    await this.validateBoard(boardId, userId);
+    await this.validateColumn(boardId, id);
+    return await this.prisma.column.update({
+      where: { id },
+      data: updateColumnDto,
+      include: { cards: { orderBy: { order: 'asc' } } },
+    });
+  }
+
+  async remove(boardId: number, id: number, userId: string): Promise<void> {
+    await this.validateBoard(boardId, userId);
+    await this.validateColumn(boardId, id);
+    await this.prisma.column.delete({
+      where: { id },
+    });
+  }
+}
+</file>
+
+<file path="backend/src/modules/columns/dto/req/create-column.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+
+export class CreateColumnDto {
+  @ApiProperty({ example: 'To Do', description: 'Title of the column' })
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @ApiProperty({ example: 1, description: 'Order of the column in the board' })
+  @IsInt()
+  @Min(0)
+  order: number;
+}
+</file>
+
+<file path="backend/src/modules/columns/dto/req/update-column.req.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsOptional, IsString, Min } from 'class-validator';
+
+export class UpdateColumnDto {
+  @ApiProperty({
+    example: 'In Progress',
+    description: 'Updated title of the column',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  title?: string;
+
+  @ApiProperty({
+    example: 2,
+    description: 'Updated order of the column',
+    required: false,
+  })
+  @IsInt()
+  @Min(0)
+  @IsOptional()
+  order?: number;
+}
+</file>
+
+<file path="backend/src/modules/columns/dto/res/column.res.dto.ts">
+import { ApiProperty } from '@nestjs/swagger';
+
+import { CardResDto } from '../../../cards/dto/res/card.res.dto';
+
+export class ColumnResDto {
+  @ApiProperty({ example: 1, description: 'ID of the column' })
+  id: number;
+
+  @ApiProperty({ example: 'To Do', description: 'Title of the column' })
+  title: string;
+
+  @ApiProperty({ example: 1, description: 'Order of the column in the board' })
+  order: number;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Creation date',
+  })
+  createdAt: Date;
+
+  @ApiProperty({
+    example: '2025-09-16T12:00:00.000Z',
+    description: 'Last update date',
+  })
+  updatedAt: Date;
+
+  @ApiProperty({
+    example: 1,
+    description: 'ID of the board the column belongs to',
+  })
+  boardId: number;
+
+  @ApiProperty({
+    description: 'Cards inside the column',
+    type: [CardResDto],
+  })
+  cards: CardResDto[];
+}
+</file>
+
+<file path="backend/tsconfig.build.json">
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+}
+</file>
+
+<file path="backend/tsconfig.json">
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2023",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false
+  }
+}
+</file>
+
+<file path="frontend/.gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="frontend/app/boards/page.tsx">
+'use client';
+
+import BoardList from '../components/BoardList';
+
+export default function BoardsPage() {
+  return <BoardList />;
+}
+</file>
+
+<file path="frontend/app/components/ui/Button.tsx">
+import { FC, ReactNode, ButtonHTMLAttributes } from "react";
+import clsx from "clsx";
+
+ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }> = ({
+                                                                                                children,
+                                                                                                className,
+                                                                                                ...props
+                                                                                              }) => (
+  <button
+    {...props}
+    className={clsx(
+      "relative overflow-hidden text-black p-2 rounded-md bg-gray-300 group transition focus:ring-2 focus:ring-blue-400",
+      className
+    )}
+  >
+    <span className="relative z-10">{children}</span>
+    <span
+     className="flex-1 border border-gray-300 rounded-md p-2 absolute inset-0 bg-blue-300 scale-0 group-hover:scale-100 transition-transform duration-300 origin-center"
+      aria-hidden="true"
+    />
+  </button>
+);
+
+export{ Button };
+</file>
+
+<file path="frontend/app/components/ui/Loader.tsx">
+export const Loader = () => (
+  <div className="flex justify-center items-center py-6">
+    <span className="w-7 h-7 border-4 border-blue-400 border-t-transparent rounded-full animate-spin inline-block"></span>
+  </div>
+);
+</file>
+
+<file path="frontend/app/login/page.tsx">
+import LoginForm from "../components/LoginForm";
+
+export default function LoginPage() {
+  return <LoginForm />;
+}
+</file>
+
+<file path="frontend/app/register/page.tsx">
+import RegisterForm from '../components/RegisterForm';
+
+export default function RegisterPage() {
+  return <RegisterForm />;
+}
+</file>
+
+<file path="frontend/app/types/RegEx.ts">
+export type RegisterFormValidatorType = (email: string, password: string, name: string) => string | null;
+
+export const RegisterFormValidator: RegisterFormValidatorType = (email, password, name) => {
+  if (!email || !password || !name) return 'All fields are required';
+  if (!/^[^@]+@[^@]+\.[^@]+$/.test(email)) return 'Invalid email format';
+  if (password.length < 6) return 'Password must be at least 6 characters';
+  if (name.length < 2) return 'Name must be at least 2 characters';
+  return null;
+};
+
+export function validateLogin(email: string, password: string): string | null {
+  if (!email || !password) return 'All fields are required';
+  if (!/^[^@]+@[^@]+\.[^@]+$/.test(email)) return 'Invalid email format';
+  if (password.length < 6) return 'Password must be at least 6 characters';
+  return null;
+}
+</file>
+
+<file path="frontend/eslint.config.mjs">
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
+  },
+];
+
+export default eslintConfig;
+</file>
+
+<file path="frontend/next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+</file>
+
+<file path="frontend/README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="frontend/tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="backend/package.json">
+{
+  "name": "mini-trello",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "migration:generate": "prisma migrate dev --name",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/src/main",
+    "migrate:dev": "npx prisma migrate dev",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.1",
+    "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.0",
+    "@nestjs/passport": "^11.0.5",
+    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/swagger": "^11.2.0",
+    "@prisma/client": "^6.16.1",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "bcrypt": "^6.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "cookie-parser": "^1.4.7",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.1",
+    "@swc/cli": "^0.6.0",
+    "@swc/core": "^1.10.7",
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.7",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "prisma": "^6.16.1",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
+</file>
+
+<file path="backend/src/main.ts">
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as cookieParser from 'cookie-parser';
+
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
+
+  app.use(cookieParser());
+
+  const config = new DocumentBuilder()
+    .setTitle('Mini-Trello API')
+    .setDescription('API documentation for the Mini-Trello project')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
+  await app.listen(process.env.PORT ?? 5000);
+  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`API docs available at: ${await app.getUrl()}/docs`);
+}
+void bootstrap();
+</file>
+
+<file path="frontend/app/boards/[id]/page.tsx">
+'use client';
+
+import React, { use, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../components/AuthContext';
+import Board from '../../components/Board';
+
+export default function BoardPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.push('/login');
+    }
+  }, [isLoading, user, router]);
+
+  if (isLoading || !user) {
+    return null;
+  }
+
+  const boardId = Number(resolvedParams.id);
+
+  return <Board boardId={boardId} />;
+}
+</file>
+
+<file path="frontend/app/components/ui/DropdownMenu.tsx">
+import { useState, useRef, useEffect } from "react";
+
+export default function DropdownMenu({
+                                       onEdit,
+                                       onDelete,
+                                     }: {
+  onEdit: () => void;
+  onDelete: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={menuRef}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="p-1 rounded hover:bg-gray-200 transition"
+      >
+        ⋮
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded shadow-md z-40">
+          <button
+            onClick={() => {
+              onEdit();
+              setOpen(false);
+            }}
+            className="block w-full text-left px-3 py-1 hover:bg-gray-100"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => {
+              onDelete();
+              setOpen(false);
+            }}
+            className="block w-full text-left px-3 py-1 text-red-600 hover:bg-red-100"
+          >
+            Delete
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/components/ui/ErrorMessage.tsx">
+export const ErrorMessage = ({ message }: { message: string }) => (
+<div className="text-red-600 text-center py-2 text-lg bg-red-100">{message}</div>
+);
+</file>
+
+<file path="frontend/app/components/ui/Input.tsx">
+import {FC, InputHTMLAttributes} from "react";
+import clsx from "clsx";
+
+export const Input: FC<InputHTMLAttributes<HTMLInputElement>> = ({
+                                                                   className = "",
+                                                                   ...props
+                                                                 }) => (
+  <input
+    {...props}
+    className={clsx(
+      "border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-400 transition",
+      className
+    )}
+  />
+);
+</file>
+
+<file path="frontend/app/lib/interceptors.ts">
+import { api, refresh } from "./api";
+import { AxiosError, AxiosRequestConfig } from "axios";
+
+let isRefreshing = false;
+
+export function getUserFriendlyError(error: AxiosError, fallback: string = "Unknown error"): string {
+  if (error.response) {
+    const { status, data } = error.response;
+    if (typeof data === "string") return data;
+    if (typeof data === "object" && data !== null) {
+      if ("message" in data) {
+        const msg = (data as { message?: unknown }).message;
+        if (Array.isArray(msg)) return msg.join(', ');
+        if (typeof msg === "string") return msg;
+      }
+      if ("error" in data && typeof (data as { error?: unknown }).error === "string") {
+        return (data as { error: string }).error;
+      }
+    }
+    if (status === 401) return "Incorrect email or password";
+    if (status === 404) return "User not found";
+    if (status === 409) return "User already exists";
+    if (status === 422) return "Validation error";
+    return fallback;
+  }
+  if (error.message) return error.message;
+  return fallback;
+}
+
+export const onError = async (error: AxiosError) => {
+  error.message = getUserFriendlyError(error, error.message);
+
+  const url = error.config?.url ?? "";
+  const isAuthRequest = url.includes("/auth/login") || url.includes("/auth/refresh");
+
+  if (
+    error.response &&
+    error.response.status === 401 &&
+    !isAuthRequest &&
+    !isRefreshing
+  ) {
+    isRefreshing = true;
+    try {
+      await refresh();
+      isRefreshing = false;
+      return api(error.config as AxiosRequestConfig);
+    } catch (refreshError) {
+      isRefreshing = false;
+      (refreshError as AxiosError).message = getUserFriendlyError(
+        refreshError as AxiosError,
+        "Session expired. Please log in again."
+      );
+      throw refreshError;
+    }
+  }
+  throw error;
+};
+</file>
+
+<file path="frontend/tailwind.config.js">
+import tailwindScrollbar from 'tailwind-scrollbar';
+
+export default {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    tailwindScrollbar,
+  ],
+};
+</file>
+
+<file path="frontend/app/components/AuthContext.tsx">
+'use client';
+
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { login as apiLogin, logout as apiLogout, register as apiRegister } from '../lib/api';
+import { User } from '../types';
+
+interface AuthContextType {
+  user: User | null;
+  login: (data: { email: string; password: string }) => Promise<void>;
+  register: (data: { email: string; password: string; name: string }) => Promise<User | null>;
+  logout: () => Promise<void>;
+  isLoading: boolean;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/auth/me', {
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          setUser(null);
+        }
+      } catch (error) {
+        console.log('Auth check failed:', error);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    void checkAuth();
+  }, []);
+
+  const register = async (data: { email: string; password: string; name: string }) => {
+    const response = await apiRegister(data);
+    setUser(response.user);
+    return response.user;
+  };
+
+  const login = async (data: { email: string; password: string }) => {
+    const response = await apiLogin(data);
+    setUser(response.user);
+  };
+
+  const logout = async () => {
+    try {
+      await apiLogout();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      setUser(null);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, register, logout, isLoading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+</file>
+
+<file path="frontend/app/components/NavBar.tsx">
+'use client';
+
+import Link from 'next/link';
+import {usePathname, useRouter} from 'next/navigation';
+import React, {useEffect, useState} from "react";
+import {useAuth} from "./AuthContext";
+import {Breadcrumbs} from "./ui/Breadcrumbs";
+import {getBoard} from "../lib/api";
+
+export default function NavBar() {
+  const { user, logout, isLoading } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [boardTitle, setBoardTitle] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const match = pathname.match(/^\/boards\/(\d+)$/);
+    if (match) {
+      const boardId = Number(match[1]);
+      getBoard(boardId)
+        .then(board => setBoardTitle(board.title))
+        .catch(() => setBoardTitle(undefined));
+    } else {
+      setBoardTitle(undefined);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isLoading && !user && pathname !== '/' && pathname !== '/login' && pathname !== '/register') {
+      router.push('/login');
+    }
+  }, [isLoading, user, pathname, router]);
+
+  return (
+    <nav className="bg-neutral-700 text-white p-3 sm:p-4 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        <div className="flex items-center gap-4 flex-wrap">
+          <Link
+            href="/"
+            className={`text-xl font-bold ${pathname === '/login' || pathname === '/register' ? 'pointer-events-none opacity-50' : ''}`}
+            aria-disabled={pathname === '/login' || pathname === '/register'}
+            tabIndex={pathname === '/login' || pathname === '/register' ? -1 : 0}
+          >
+            Mini-Trello
+          </Link>
+          <Breadcrumbs boardTitle={boardTitle}/>
+        </div>
+        <div className="space-x-4 flex items-center">
+          {user ? (
+            <>
+              <span className="inline-flex-block mr-2 sm:mr-8 flex items-center text-sm sm:text-base">
+                <svg className="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 16-4 16 0" />
+                </svg>
+                {user.name}
+              </span>
+              <button
+                onClick={async () => {
+                  await logout();
+                  router.push('/login');
+                }}
+                className="p-1 hover:text-red-500 hover:bg-neutral-600 flex align-text-center"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                </svg>
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={pathname === '/login' ? 'underline' : ''}>
+                Login
+              </Link>
+              <Link href="/register" className={pathname === '/register' ? 'underline' : ''}>
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
+}
+</file>
+
+<file path="frontend/app/components/ui/Breadcrumbs.tsx">
+'use client';
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const CRUMB_MAP: Record<string, string> = {
+  "boards": "Boards",
+  "login": "Login",
+  "register": "Register",
+};
+
+type Props = {
+  boardTitle?: string;
+};
+
+function getCrumbs(pathname: string, boardTitle?: string) {
+  const parts = pathname.split("/").filter(Boolean);
+  const crumbs = [];
+  let url = "";
+  for (let i = 0; i < parts.length; i++) {
+    url += "/" + parts[i];
+    let text;
+    if (parts[i] === "boards" && parts[i + 1] && Number(parts[i + 1]) && boardTitle) {
+      crumbs.push({
+        text: CRUMB_MAP[parts[i]],
+        href: url,
+        isLast: false,
+        key: url + '-boards',
+      });
+      crumbs.push({
+        text: boardTitle,
+        href: url + '/' + parts[i + 1],
+        isLast: true,
+        key: url + '/' + parts[i + 1] + '-' + boardTitle,
+      });
+      break;
+    }
+    if (CRUMB_MAP[parts[i]]) {
+      text = CRUMB_MAP[parts[i]];
+    } else if (Number(parts[i])) {
+      text = boardTitle ? boardTitle : "Board #" + parts[i];
+    } else {
+      text = parts[i];
+    }
+    crumbs.push({
+      text,
+      href: url,
+      isLast: i === parts.length - 1,
+      key: url + '-' + text,
+    });
+  }
+  if (crumbs.length === 0) {
+    crumbs.push({ text: "Home", href: "/", isLast: true, key: "/-Home" });
+  }
+  return crumbs;
+}
+
+export function Breadcrumbs({ boardTitle }: Props) {
+  const pathname = usePathname();
+  const crumbs = getCrumbs(pathname, boardTitle);
+
+  return (
+    <nav aria-label="Breadcrumb" >
+      <ol className="flex items-center space-x-2 text-sm text-gray-500">
+        {crumbs.map((crumb, idx) => (
+          <li key={crumb.key} className="flex items-center">
+            {crumb.isLast ? (
+              <span className="font-semibold text-red-500">{crumb.text}</span>
+            ) : (
+              <Link href={crumb.href} className="hover:underline hover:text-red-500">{crumb.text}</Link>
+            )}
+            {idx < crumbs.length - 1 && (
+              <span className="mx-2 text-gray-400">/</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+</file>
+
+<file path="frontend/app/components/ui/Modal.tsx">
+'use client';
+
+import React from 'react';
+
+export default function Modal({
+                                open,
+                                title,
+                                children,
+                                onClose,
+                              }: {
+  open: boolean;
+  title?: string;
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent transition-opacity duration-200">
+      <div className="bg-neutral-100 rounded-xl p-6 min-w-[350px] drop-shadow-4xl shadow-2xl shadow-black/60 relative animate-fadeIn border border-gray-300">
+        <button
+          className="absolute right-2 top-2 text-gray-500 hover:text-red-500 text-xl"
+          onClick={onClose}
+          aria-label="Close modal"
+        >
+          ×
+        </button>
+        {title && <h3 className="text-lg font-bold mb-4">{title}</h3>}
+        {children}
+      </div>
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.96);}
+          to { opacity: 1; transform: scale(1);}
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.18s ease;
+        }
+      `}</style>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/types/index.ts">
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+}
+
+export interface TokenPair {
+  accessToken: string;
+}
+
+export interface AuthResponse {
+  user: User;
+  tokens: TokenPair;
+}
+
+export interface Board {
+  id: number;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  order: number | null;
+  columns: Column[];
+}
+
+export interface Column {
+  id: number;
+  title: string;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+  boardId: number;
+  cards: Card[];
+}
+
+export interface Card {
+  id: number;
+  title: string;
+  description: string | null;
+  order: number;
+  createdAt: string;
+  updatedAt: string;
+  columnId: number;
+}
+</file>
+
+<file path="frontend/app/globals.css">
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d1d5db;
+}
+</file>
+
+<file path="frontend/app/page.tsx">
+import Link from "next/link";
+import {Button} from "./components/ui/Button";
+
+export default function Home() {
+  return (
+   <div className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-blue-100 via-white to-blue-200 rounded-xl shadow-lg">
+      <h1 className="text-4xl font-extrabold mb-6 text-blue-700 drop-shadow">Welcome to Mini-Trello</h1>
+      <p className="mb-6 text-lg text-gray-700">Organize your tasks with boards, columns, and cards.</p>
+    <Link href="/boards">
+      <Button>
+        Go to Boards
+        <span className="ml-2">&#8594;</span>
+      </Button>
+    </Link>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/package.json">
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.8",
+    "@hello-pangea/dnd": "^18.0.1",
+    "axios": "^1.12.2",
+    "next": "15.5.3",
+    "postcss": "^8.5.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "tailwind-scrollbar": "^4.0.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="frontend/postcss.config.mjs">
+export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+};
+</file>
+
+<file path=".gitignore">
+.idea
+
+/.idea/.gitignore
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/libraries/information_schema_FNRwLQ.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/Automaze-To-Do.iml
+/.idea/prettier.xml
+/.idea/codeStyles/Project.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/.idea/sqldialects.xml
+/.idea/data_source_mapping.xml
+/.idea/dataSources.xml
+
+!/.idea/
+/.idea/copilot.data.migration.agent.xml
+/.idea/copilot.data.migration.ask.xml
+/.idea/copilot.data.migration.ask2agent.xml
+/.idea/copilot.data.migration.edit.xml
+/.idea/Mini_trello.iml
+!backend/**
+</file>
+
+<file path="frontend/app/components/LoginForm.tsx">
+'use client';
+
+import { FormEvent, useState } from 'react';
+import { useAuth } from './AuthContext';
+import { useRouter } from 'next/navigation';
+import { Input } from "./ui/Input";
+import { ErrorMessage } from "./ui/ErrorMessage";
+import { validateLogin } from "../types/RegEx";
+
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError('');
+    const validationError = validateLogin(email, password);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await login({ email, password });
+      router.push('/boards');
+    } catch (err: unknown) {
+      setError(typeof err === "object" && err && "message" in err ? (err as Error).message : "Unknown error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value.replace(/\s+/g, ''))}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <Input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-24 relative"
+            required
+          />
+          <div className="mt-3 flex items-center">
+            <input
+              id="show-password"
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+              className="mr-1 accent-green-600 h-6 w-6"
+            />
+            <label htmlFor="show-password" className="text-xs text-gray-600 select-none">Show password</label>
+          </div>
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-400 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+        >
+          {isLoading ? 'Logging in...' : 'Login'}
+        </button>
+      </form>
+      <p className="mt-4 text-center">
+        Don&apos;t have an account?{' '}
+        <a href="/register" className="text-blue-500 hover:underline">Register</a>
+      </p>
+      {error && <ErrorMessage message={error} />}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/components/RegisterForm.tsx">
+'use client';
+
+import { FormEvent, useState } from 'react';
+import { useAuth } from './AuthContext';
+import { useRouter } from 'next/navigation';
+import { Input } from "./ui/Input";
+import { ErrorMessage } from "./ui/ErrorMessage";
+import { RegisterFormValidator } from "../types/RegEx";
+
+export default function RegisterForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { register } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setError('');
+    const validationError = RegisterFormValidator(email, password, name);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await register({ email, password, name });
+      router.push('/boards');
+    } catch (err: unknown) {
+      setError(typeof err === "object" && err && "message" in err ? (err as Error).message : "Unknown error");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Register</h2>
+      {error && <ErrorMessage message={error} />}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value.replace(/\s+/g, ''))}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+          <Input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-24 relative"
+            required
+          />
+          <div className="mt-3 flex items-center">
+            <input
+              id="show-password"
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+              className="mr-1 accent-green-600 h-6 w-6"
+            />
+            <label htmlFor="show-password" className="text-xs text-gray-600 select-none">Show password</label>
+          </div>
+        </div>
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+          <Input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+        >
+          {isLoading ? 'Registering...' : 'Register'}
+        </button>
+      </form>
+      <p className="mt-4 text-center">
+        Already have an account?{' '}
+        <a href="/login" className="text-blue-500 hover:underline">Login</a>
+      </p>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/components/BoardList.tsx">
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { useAuth } from './AuthContext';
+import { createBoard, deleteBoard, getBoards, updateBoard } from '../lib/api';
+import { Board } from '../types';
+import Link from 'next/link';
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
+import DropdownMenu from "./ui/DropdownMenu";
+import Modal from "./ui/Modal";
+import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
+
+export default function BoardList() {
+  const [boards, setBoards] = useState<Board[]>([]);
+  const [title, setTitle] = useState('');
+  const [editingBoardId, setEditingBoardId] = useState<number | null>(null);
+  const [editTitle, setEditTitle] = useState('');
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBoardId, setSelectedBoardId] = useState<number | null>(null);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      getBoards().then(res => {
+        setBoards(res.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)));
+      }).catch(console.error);
+    }
+  }, [user]);
+
+  const handleCreateBoard = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title) return;
+    try {
+      const newBoard = await createBoard({ title });
+      setBoards([...boards, newBoard]);
+      setTitle('');
+    } catch (err) {
+      console.error('Failed to create board:', err);
+    }
+  };
+
+  const handleEditBoard = async () => {
+    if (!editTitle || selectedBoardId === null) return;
+    try {
+      const updatedBoard = await updateBoard(selectedBoardId, { title: editTitle });
+      setBoards(boards.map((board) => (board.id === selectedBoardId ? updatedBoard : board)));
+      setEditingBoardId(null);
+      setEditTitle('');
+      setShowEditModal(false);
+      setSelectedBoardId(null);
+    } catch (err) {
+      console.error('Failed to update board:', err);
+    }
+  };
+
+  const handleDeleteBoard = async () => {
+    if (selectedBoardId === null) return;
+    try {
+      await deleteBoard(selectedBoardId);
+      setBoards(boards.filter((board) => board.id !== selectedBoardId));
+      setShowDeleteModal(false);
+      setSelectedBoardId(null);
+    } catch (err) {
+      console.error('Failed to delete board:', err);
+    }
+  };
+
+  const handleDragEnd = async (result: DropResult) => {
+    if (!result.destination) return;
+    const fromIdx = result.source.index;
+    const toIdx = result.destination.index;
+    if (fromIdx === toIdx) return;
+
+    const reordered = Array.from(boards);
+    const [dragged] = reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, dragged);
+
+    const boardsWithOrder = reordered.map((board, idx) => ({
+      ...board,
+      order: idx
+    }));
+
+    setBoards(boardsWithOrder);
+
+    try {
+      for (const b of boardsWithOrder) {
+        await updateBoard(b.id, { order: b.order });
+      }
+    } catch (err) {
+      console.error("Failed to save board order:", err);
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-2 sm:p-4 bg-white rounded-md shadow mt-6 min-h-[850px]  ">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Your Boards</h1>
+      {user ? (
+        <>
+      {boards.length < 9 && (
+        <form onSubmit={handleCreateBoard} className="mb-6 flex gap-2 flex-wrap">
+          <Input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="New board title"
+            className="flex-1 text-xs sm:text-base"
+          />
+          <Button>Create Board</Button>
+        </form>
+      )}
+          {boards.length > 0 ? (
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Droppable droppableId="boards-droppable">
+                {(provided, snapshot) => (
+                  <div
+                    className={
+                      "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 min-h-[240px] " +
+                      (snapshot.isDraggingOver ? " bg-blue-100" : "")
+                    }
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {boards.map((board, idx) => (
+                      <Draggable key={board.id} draggableId={String(board.id)} index={idx}>
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={
+                              "bg-gray-100 rounded-md shadow transition relative text-xs sm:text-base flex flex-col p-2 sm:p-4 min-h-[180px] " +
+                              (snapshot.isDragging ? "bg-blue-50 border-2 border-blue-400 z-10" : "hover:bg-gray-200")
+                            }
+                            style={{
+                              ...provided.draggableProps.style,
+                              userSelect: "none"
+                            }}
+                          >
+                            <div className="absolute top-2 right-2">
+                              <DropdownMenu
+                                onEdit={() => {
+                                  setSelectedBoardId(board.id);
+                                  setEditTitle(board.title);
+                                  setShowEditModal(true);
+                                }}
+                                onDelete={() => {
+                                  setSelectedBoardId(board.id);
+                                  setShowDeleteModal(true);
+                                }}
+                              />
+                            </div>
+                            <Link href={`/boards/${board.id}`} className="block">
+                              <h2 className="text-base sm:text-xl font-semibold text-gray-800">{board.title}</h2>
+                              <p className="text-xs sm:text-sm text-gray-600">
+                                Created: {new Date(board.createdAt).toLocaleDateString()}
+                              </p>
+                            </Link>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          ) : (
+            <p className="text-gray-600">No boards yet. Create one to get started!</p>
+          )}
+
+          <Modal open={showEditModal} title="Edit Board" onClose={() => setShowEditModal(false)}>
+            <form onSubmit={(e) => { e.preventDefault(); void handleEditBoard(); }} className="space-y-2">
+              <Input
+                type="text"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                placeholder="Edit board title"
+              />
+              <div className="flex gap-2">
+                <button type="submit" className="text-white bg-blue-400 px-4 py-1 rounded">Save</button>
+                <button type="button" className="bg-gray-200 hover:bg-gray-300 px-4 py-1 rounded" onClick={() => setShowEditModal(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </Modal>
+
+          <Modal open={showDeleteModal} title="Delete Board?" onClose={() => setShowDeleteModal(false)}>
+            <p className="mb-4">Are you sure you want to delete this board?</p>
+            <div className="flex gap-2">
+              <button className="text-white px-4 py-1 rounded bg-red-500 hover:bg-red-600" onClick={handleDeleteBoard}>
+                Delete
+              </button>
+              <button className="bg-gray-200 hover:bg-gray-300 px-4 py-1 rounded  text-black" onClick={() => setShowDeleteModal(false)}>
+                Cancel
+              </button>
+            </div>
+          </Modal>
+        </>
+      ) : (
+        <p className="text-gray-600">
+          Please <Link href="/login" className="text-blue-400 hover:underline">login</Link> to view your boards.
+        </p>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/lib/api.ts">
+import axios from 'axios';
+import {AuthResponse, Board, Card, Column} from '../types';
+import {onError} from "./interceptors";
+
+export const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
+  withCredentials: true,
+});
+
+
+api.interceptors.response.use(
+  (response) => response,
+  onError
+);
+
+export const register = async (data: { email: string; password: string; name: string }) => {
+  const response = await api.post<AuthResponse>('/auth/register', data);
+  return response.data;
+};
+
+export const login = async (data: { email: string; password: string }) => {
+  const response = await api.post<AuthResponse>('/auth/login', data);
+  return response.data;
+};
+
+export const refresh = async () => {
+  const response = await api.post<{ accessToken: string }>('/auth/refresh');
+  return response.data;
+};
+
+export const logout = async () => {
+  await api.get('/auth/logout');
+};
+
+export const createBoard = async (data: { title: string }) => {
+  const response = await api.post<Board>('/boards', data);
+  return response.data;
+};
+
+export const getBoards = async () => {
+  const response = await api.get<Board[]>('/boards');
+  return response.data;
+};
+
+export const getBoard = async (id: number) => {
+  const response = await api.get<Board>(`/boards/${id}`);
+  return response.data;
+};
+
+export const updateBoard = async (id: number, data: { title?: string; order?: number }) => {
+  const response = await api.patch<Board>(`/boards/${id}`, data);
+  return response.data;
+};
+
+export const deleteBoard = async (id: number) => {
+  await api.delete(`/boards/${id}`);
+};
+
+export const createColumn = async (boardId: number, data: { title: string; order: number }) => {
+  const response = await api.post<Column>(`/boards/${boardId}/columns`, data);
+  return response.data;
+};
+
+export const getColumns = async (boardId: number) => {
+  const response = await api.get<Column[]>(`/boards/${boardId}/columns`);
+  return response.data;
+};
+
+export const updateColumn = async (boardId: number, id: number, data: { title?: string; order?: number }) => {
+  const response = await api.patch<Column>(`/boards/${boardId}/columns/${id}`, data);
+  return response.data;
+};
+
+export const deleteColumn = async (boardId: number, id: number) => {
+  await api.delete(`/boards/${boardId}/columns/${id}`);
+};
+
+export const createCard = async (boardId: number, columnId: number, data: { title: string; description?: string; order: number }) => {
+  const response = await api.post<Card>(`/boards/${boardId}/columns/${columnId}/cards`, data);
+  return response.data;
+};
+
+export const getCards = async (boardId: number, columnId: number) => {
+  const response = await api.get<Card[]>(`/boards/${boardId}/columns/${columnId}/cards`);
+  return response.data;
+};
+
+export const updateCard = async (
+  boardId: number,
+  columnId: number,
+  id: number,
+  data: { title?: string; description?: string; order?: number; columnId?: number }
+) => {
+  const response = await api.patch<Card>(`/boards/${boardId}/columns/${columnId}/cards/${id}`, data);
+  return response.data;
+};
+
+export const deleteCard = async (boardId: number, columnId: number, id: number) => {
+  await api.delete(`/boards/${boardId}/columns/${columnId}/cards/${id}`);
+};
+</file>
+
+<file path="frontend/app/components/Board.tsx">
+'use client';
+
+import React, {useCallback, useEffect, useState} from 'react';
+import {DragDropContext, DropResult} from '@hello-pangea/dnd';
+import {createColumn, deleteColumn, getColumns, updateCard} from '../lib/api';
+import {Column} from '../types';
+import ColumnComponent from './Column';
+import {Button} from "./ui/Button";
+import {Input} from "./ui/Input";
+
+export default function Board({ boardId }: { boardId: number }) {
+  const [columns, setColumns] = useState<Column[]>([]);
+  const [newColumnTitle, setNewColumnTitle] = useState('');
+  const [newColumnOrder, setNewColumnOrder] = useState(0);
+
+  const fetchColumns = useCallback(async () => {
+    try {
+      const data = await getColumns(boardId);
+      const normalizedColumns = data.map((col) => ({ ...col, cards: col.cards || [] }));
+      setColumns(normalizedColumns);
+    } catch (err) {
+      console.error('Error fetching columns:', err);
+    }
+  }, [boardId]);
+
+  useEffect(() => {
+    void fetchColumns();
+  }, [boardId, fetchColumns]);
+
+  const handleCreateColumn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newColumnTitle) return;
+    try {
+      const newColumn = await createColumn(boardId, { title: newColumnTitle, order: newColumnOrder });
+      setColumns((prev) => [...prev, { ...newColumn, cards: newColumn.cards || [] }]);
+      setNewColumnTitle('');
+      setNewColumnOrder(0);
+    } catch (err) {
+      console.error('Failed to create column:', err);
+    }
+  };
+
+  const handleDeleteColumn = async (columnId: number) => {
+    try {
+      await deleteColumn(boardId, columnId);
+      setColumns((prev) => prev.filter((col) => col.id !== columnId));
+    } catch (err: unknown) {
+      if (err instanceof Error && err.message.includes('не знайдена')) {
+        setColumns((prev) => prev.filter((col) => col.id !== columnId));
+      }
+      console.error('Failed to delete column:', err);
+    }
+  };
+
+  const handleDragEnd = async (result: DropResult) => {
+    const { source, destination, draggableId } = result;
+    if (!destination) return;
+
+    const sourceColumn = columns.find((col) => col.id === +source.droppableId);
+    const destColumn = columns.find((col) => col.id === +destination.droppableId);
+    if (!sourceColumn || !destColumn) return;
+    const cardId = +draggableId;
+    const sourceColumnIdForApi = sourceColumn.id;
+
+    const realSourceIndex = sourceColumn.cards.findIndex((c) => c?.id === cardId);
+    if (realSourceIndex === -1) {
+      await fetchColumns();
+      return;
+    }
+
+    setColumns((prevCols) => {
+      const nextCols = prevCols.map((c) => ({ ...c, cards: Array.from(c.cards || []) }));
+      const src = nextCols.find((c) => c.id === sourceColumn.id)!;
+      const dst = nextCols.find((c) => c.id === destColumn.id)!;
+
+      const idxInSrc = src.cards.findIndex((c) => c?.id === cardId);
+      if (idxInSrc === -1) return prevCols;
+
+      const [moved] = src.cards.splice(idxInSrc, 1);
+      if (!moved) return prevCols;
+
+      const insertIndex = Math.max(0, Math.min(destination.index, dst.cards.length));
+      const movedUpdated = { ...moved, columnId: dst.id, order: insertIndex };
+      dst.cards.splice(insertIndex, 0, movedUpdated);
+
+      return nextCols.map((c) => ({ ...c, cards: c.cards.map((card, idx) => ({ ...card, order: idx })) }));
+    });
+
+    const body: { order?: number; columnId?: number } = { order: destination.index };
+    if (source.droppableId !== destination.droppableId) {
+      body.columnId = +destination.droppableId;
+    }
+
+    try {
+      await updateCard(boardId, sourceColumnIdForApi, cardId, body);
+    } catch (err) {
+      console.error('Failed to move/update card on server:', err);
+      void fetchColumns();
+    }
+  };
+
+  return (
+    <div className="w-full max-w-7xl mx-auto p-2 sm:p-4 max-h-700 sm:max-h-[100vh] ">
+      <h2 className="text-2xl font-bold mb-4">Board</h2>
+      {columns.length < 3 && (
+        <form onSubmit={handleCreateColumn} className="mb-4 flex gap-2 flex-wrap">
+          <Input
+            type="text"
+            value={newColumnTitle}
+            onChange={(e) => setNewColumnTitle(e.target.value)}
+            placeholder="New column title"
+            className="flex-1 border border-gray-300 rounded-md p-2"
+          />
+          <Button>Create Column</Button>
+        </form>
+      )}
+      {columns.length > 1 && (
+        <div className="sm:hidden text-center text-gray-400 text-xs py-1">
+          Swipe columns &rarr;
+        </div>
+      )}
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <div className="flex items-start gap-4 justify-center w-full overflow-x-auto flex-nowrap pb-4 scrollbar-thin scrollbar-thumb-gray-300">
+          {columns.map((column) => (
+            <ColumnComponent
+              key={column.id}
+              column={column}
+              boardId={boardId}
+              onDelete={handleDeleteColumn}
+              onRefresh={fetchColumns}
+            />
+          ))}
+        </div>
+      </DragDropContext>
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/components/Card.tsx">
+'use client';
+
+import {Draggable} from '@hello-pangea/dnd';
+import {deleteCard, updateCard} from '../lib/api';
+import {Card} from '../types';
+import {FormEvent, useState} from 'react';
+import Modal from "./ui/Modal";
+import {Input} from "./ui/Input";
+import DropdownMenu from "./ui/DropdownMenu";
+
+export default function CardComponent({
+                                        card,
+                                        index,
+                                        boardId,
+                                        columnId,
+                                        onDelete,
+                                        onUpdate,
+                                      }: {
+  card: Card;
+  index: number;
+  boardId: number;
+  columnId: number;
+  onDelete?: (cardId: number) => void;
+  onUpdate?: (updatedCard: Card) => void;
+}) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState(card.title || '');
+  const [description, setDescription] = useState(card.description || '');
+  const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const handleUpdate = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+    try {
+      const updated = await updateCard(boardId, card.columnId, card.id, { title, description });
+      onUpdate?.(updated);
+      setIsEditing(false);
+    } catch (err) {
+      console.error('Failed to update card:', err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deleteCard(boardId, card.columnId, card.id);
+      onDelete?.(card.id);
+      setShowDeleteModal(false);
+    } catch (err) {
+      console.error('Failed to delete card:', err);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  return (
+    <>
+      <Draggable draggableId={String(card.id)} index={index}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            className={
+              "bg-white p-2 sm:p-3 rounded-lg shadow transition-transform duration-150 select-none border border-gray-300 text-xs sm:text-base " +
+              (snapshot.isDragging ? 'bg-blue-50 border-blue-300' : 'hover:bg-gray-50')
+            }
+          >
+            {isEditing ? (
+              <Modal open={isEditing} title="Edit Card" onClose={() => setIsEditing(false)}>
+                <form onSubmit={handleUpdate} className="space-y-2">
+                  <Input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <textarea
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
+                  />
+                  <div className="flex gap-2">
+                    <button
+                      type="submit"
+                      disabled={isSaving}
+                      className="bg-blue-400 text-white p-1 rounded-md text-xs sm:text-base"
+                    >
+                      {isSaving ? 'Saving...' : 'Save'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditing(false)}
+                      className="bg-gray-200 p-1 rounded-md hover:bg-gray-300 text-xs sm:text-base"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </Modal>
+            ) : (
+              <div>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
+                      <span className="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                      {card.title}
+                    </h4>
+                    {card.description && (
+                      <p className="text-xs sm:text-sm text-gray-600 mt-1">{card.description}</p>
+                    )}
+                  </div>
+                  <DropdownMenu
+                    onEdit={() => setIsEditing(true)}
+                    onDelete={() => setShowDeleteModal(true)}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </Draggable>
+
+      <Modal open={showDeleteModal} title="Delete Card?" onClose={() => setShowDeleteModal(false)}>
+        <p className="mb-4">Are you sure you want to delete this card?</p>
+        <div className="flex gap-2">
+          <button
+            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+            onClick={handleDelete}
+            disabled={isDeleting}
+          >
+            {isDeleting ? 'Deleting...' : 'Delete'}
+          </button>
+          <button
+            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-300"
+            onClick={() => setShowDeleteModal(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal>
+    </>
+  );
+}
+</file>
+
+<file path="frontend/app/components/Column.tsx">
+'use client';
+
+import { FormEvent, useState } from 'react';
+import { Droppable } from '@hello-pangea/dnd';
+import { Column as ColumnType } from '../types';
+import { createCard, updateColumn } from '../lib/api';
+import CardComponent from './Card';
+import Modal from "./ui/Modal";
+import { Input } from "./ui/Input";
+
+export default function ColumnComponent({
+                                          column,
+                                          boardId,
+                                          onDelete,
+                                          onRefresh,
+                                        }: {
+  column: ColumnType;
+  boardId: number;
+  onDelete: (columnId: number) => void;
+  onRefresh?: () => void;
+}) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editTitle, setEditTitle] = useState(column.title);
+  const [isAddingCard, setIsAddingCard] = useState(false);
+  const [isCreatingCard, setIsCreatingCard] = useState(false);
+  const [newCardTitle, setNewCardTitle] = useState('');
+  const [newCardDescription, setNewCardDescription] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [localTitle, setLocalTitle] = useState(column.title);
+
+  const handleEditColumn = async () => {
+    try {
+      const updated = await updateColumn(boardId, column.id, { title: editTitle });
+      setLocalTitle(updated.title);
+      setEditTitle(updated.title);
+      setIsEditModalOpen(false);
+
+    } catch (err) {
+      console.error('Failed to update column:', err);
+    }
+  };
+
+  const handleDeleteColumn = async () => {
+    setIsDeleting(true);
+    try {
+      onDelete(column.id);
+      setShowDeleteModal(false);
+      onRefresh?.();
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const handleCreateCard = async (e?: FormEvent) => {
+    if (e) e.preventDefault();
+    if (!newCardTitle) return;
+
+    setIsCreatingCard(true);
+    try {
+      await createCard(boardId, column.id, {
+        title: newCardTitle,
+        description: newCardDescription,
+        order: (column.cards?.length || 0) + 1,
+      });
+      onRefresh?.();
+      setNewCardTitle('');
+      setNewCardDescription('');
+      setIsAddingCard(false);
+    } catch (err) {
+      console.error('Failed to create card:', err);
+    } finally {
+      setIsCreatingCard(false);
+    }
+  };
+
+  return (
+    <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[300px]  flex-shrink-0">
+      <div className="flex justify-between items-center mb-2">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setIsEditModalOpen(true)}
+            className="text-grey-200 hover:text-yellow-900 transition text-xs sm:text-base"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="text-red-500 hover:text-red-700 transition text-xs sm:text-base"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <Droppable droppableId={String(column.id)}>
+        {(provided, snapshot) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className={
+              "space-y-2 mb-2 overflow-y-auto overflow-x-hidden max-h-[360px] sm:max-h-[550px] transition-all scrollbar-thin scrollbar-thumb-gray-300 " +
+              (snapshot.isDraggingOver ? "bg-blue-100" : "")
+            }
+          >
+            {(column.cards || []).length === 0 && (
+              <div className="text-center text-gray-400 py-8 italic opacity-70 text-xs sm:text-base">
+                No cards yet
+              </div>
+            )}
+            {(column.cards || []).map((card, index) => (
+              <CardComponent
+                key={card.id}
+                card={card}
+                index={index}
+                boardId={boardId}
+                columnId={column.id}
+                onDelete={() => onRefresh?.()}
+                onUpdate={() => onRefresh?.()}
+              />
+            ))}
+            <br />
+            <div className="mb-8">{provided.placeholder}</div>
+          </div>
+        )}
+      </Droppable>
+
+      {isAddingCard ? (
+     <form onSubmit={handleCreateCard} className="space-y-2 mt-2 ">
+          <Input
+            type="text"
+            value={newCardTitle}
+            onChange={(e) => setNewCardTitle(e.target.value)}
+            placeholder="Card title"
+            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
+            required
+            disabled={isCreatingCard}
+          />
+          <Input
+            type="text"
+            value={newCardDescription}
+            onChange={(e) => setNewCardDescription(e.target.value)}
+            placeholder="Card description (optional)"
+            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
+            disabled={isCreatingCard}
+          />
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              disabled={isCreatingCard}
+              className="bg-blue-400 text-white p-0.5 rounded-md text-xs sm:text-base"
+            >
+              {isCreatingCard ? 'Creating...' : 'Add Card'}
+            </button>
+            <button
+              type="button"
+              className="bg-gray-200 text-gray-700 p-0.5 rounded-md hover:bg-gray-300 text-xs sm:text-base"
+              onClick={() => setIsAddingCard(false)}
+              disabled={isCreatingCard}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        <button
+          type="button"
+          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full text-xs sm:text-base"
+          onClick={() => setIsAddingCard(true)}
+        >
+          + Add Card
+        </button>
+      )}
+
+      <Modal open={showDeleteModal} title="Delete Column?" onClose={() => setShowDeleteModal(false)}>
+        <p className="mb-4">Are you sure you want to delete this column and all its cards?</p>
+        <div className="flex gap-2">
+          <button
+            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+            onClick={handleDeleteColumn}
+            disabled={isDeleting}
+          >
+            {isDeleting ? 'Deleting...' : 'Delete'}
+          </button>
+          <button
+            className="bg-gray-200 px-4 py-1 rounded hover:bg-gray-300"
+            onClick={() => setShowDeleteModal(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal>
+
+      {isEditModalOpen && (
+        <Modal open={isEditModalOpen} title="Edit Column" onClose={() => setIsEditModalOpen(false)}>
+          <div className="mb-4">
+            <input
+              type="text"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+              className="w-full border border-gray-300 rounded-md p-2"
+              placeholder="Column title"
+            />
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="bg-blue-400 text-white p-2 rounded-md"
+              onClick={handleEditColumn}
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              className="bg-gray-200  p-2 rounded-md hover:bg-gray-300"
+              onClick={() => setIsEditModalOpen(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/app/layout.tsx">
+'use client'
+import './globals.css';
+import React from "react";
+import {AuthProvider} from "./components/AuthContext";
+import NavBar from "./components/NavBar";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+    <body className="bg-gray-50 min-h-screen">
+    <AuthProvider>
+      <main className="max-w-7xl mx-auto sm:px-4 px-1 py-2 min-h-screen">
+      <NavBar />
+        {children}
+      </main>
+    </AuthProvider>
+    </body>
+    </html>
+  );
+}
+</file>
+
+</files>

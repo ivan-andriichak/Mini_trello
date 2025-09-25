@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const tailwindScrollbar = require('tailwind-scrollbar');
 
 module.exports = {
   content: [
@@ -10,6 +8,5 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    tailwindScrollbar,
   ],
 };

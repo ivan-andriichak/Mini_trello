@@ -12,6 +12,7 @@ async function bootstrap() {
       'https://mini-trello-mtln21o9d-ivan-andriichaks-projects.vercel.app',
       /^https:\/\/mini-trello-.*\.vercel\.app$/,
     ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
   app.use(cookieParser());

@@ -76,9 +76,11 @@ export default function ColumnComponent({
   };
 
   return (
-  <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[220px] max-w-full xs:min-w-[180px]
-  xs:max-w-[220px]
-  sm:min-w-[250px] sm:max-w-[250px]
+  <div className="bg-white p-2 sm:p-4 rounded-xl border
+  border-gray-200
+   shadow-md flex flex-col
+     max-w-full
+  sm:min-w-[250px]
   flex-shrink-0 w-[95vw] xs:w-[90vw] sm:w-auto">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>

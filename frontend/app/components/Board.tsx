@@ -120,7 +120,8 @@ export default function Board({ boardId }: { boardId: number }) {
         </div>
       )}
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className="flex items-start gap-4 justify-center w-full overflow-x-auto flex-nowrap pb-4 scrollbar-thin scrollbar-thumb-gray-300">
+        <div className="flex items-start gap-2 sm:gap-4 justify-start sm:justify-center
+         w-full overflow-x-auto flex-nowrap pb-2 sm:pb-4 scrollbar-thin scrollbar-thumb-gray-300 min-h-[220px] sm:min-h-[300px]">
           {columns.map((column) => (
             <ColumnComponent
               key={column.id}

@@ -7,7 +7,8 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://trello-delta-jet.vercel.app'],
+    origin: ['http://localhost:3000', 'https://mini-trello-amber.vercel.app'],
+
     credentials: true,
   });
   app.use(cookieParser());

@@ -1,4 +1,4 @@
-﻿import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 
 import { PrismaModule } from '../prisma/migrations/prisma.module';
 import { AppController } from './app.controller';

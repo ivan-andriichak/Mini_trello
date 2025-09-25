@@ -1,4 +1,4 @@
-﻿import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 import { TokenPairResDto } from './token-pair.res.dto';
 import { UserResDto } from './user.res.dto';

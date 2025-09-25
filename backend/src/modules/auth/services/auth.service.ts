@@ -24,7 +24,7 @@ export class AuthService {
       throw new UnauthorizedException('User with this email already exists');
     }
     const user = await this.prisma.user.create({
-      data: { email, password: hashedPassword, name},
+      data: { email, password: hashedPassword, name: name },
     });
     const tokens = this.generateTokens(user);
     return {

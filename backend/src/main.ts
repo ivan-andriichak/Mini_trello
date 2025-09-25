@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'https://mini-trello-mtln21o9d-ivan-andriichaks-projects.vercel.app',
+      'https://https://mini-trello-amber.vercel.app/',
       /^https:\/\/mini-trello-.*\.vercel\.app$/,
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

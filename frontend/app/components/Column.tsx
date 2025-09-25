@@ -1,12 +1,12 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { Droppable } from '@hello-pangea/dnd';
-import { Column as ColumnType } from '../types';
-import { createCard, updateColumn } from '../lib/api';
+import {FormEvent, useState} from 'react';
+import {Droppable} from '@hello-pangea/dnd';
+import {Column as ColumnType} from '../types';
+import {createCard, updateColumn} from '../lib/api';
 import CardComponent from './Card';
 import Modal from "./ui/Modal";
-import { Input } from "./ui/Input";
+import {Input} from "./ui/Input";
 
 export default function ColumnComponent({
                                           column,
@@ -76,7 +76,8 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[300px] max-w-[300px]  flex-shrink-0">
+   <div className="bg-white p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col min-w-[220px]
+   max-w-full sm:min-w-[300px] sm:max-w-[300px] flex-shrink-0 w-full sm:w-auto">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-base sm:text-lg font-semibold text-gray-700">{localTitle}</h3>
         <div className="flex gap-2">

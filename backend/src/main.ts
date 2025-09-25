@@ -10,6 +10,7 @@ async function bootstrap() {
     origin: 'http://localhost:3000',
     credentials: true,
   });
+
   app.use(cookieParser());
 
   const config = new DocumentBuilder()

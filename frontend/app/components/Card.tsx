@@ -8,14 +8,6 @@ import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
 import DropdownMenu from "./ui/DropdownMenu";
 
-// Створюємо мапінг, щоб Tailwind бачив повні імена класів
-const colorMap: { [key: number]: string } = {
-  0: 'bg-blue-400',
-  1: 'bg-green-400',
-  2: 'bg-orange-400',
-};
-const defaultColor = 'bg-gray-400';
-
 export default function CardComponent({
                                         card,
                                         index,
@@ -64,9 +56,6 @@ export default function CardComponent({
       setIsDeleting(false);
     }
   };
-
-  // Цю функцію ми більше не використовуємо, її можна видалити
-  // const getColumnColorClass = ...
 
   return (
     <>
@@ -117,10 +106,10 @@ export default function CardComponent({
                 <div className="flex justify-between items-start">
                   <div>
                     <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
-                     <span
-                       // ВИПРАВЛЕНО: Використовуємо мапінг, а не функцію
-                       className={`inline-block w-2 h-2 rounded-full ${colorMap[index] || defaultColor}`}
-                     />
+                      {index === 0 && <span className="inline-block w-2 h-2 rounded-full bg-blue-400" />}
+                      {index === 1 && <span className="inline-block w-2 h-2 rounded-full bg-green-400" />}
+                      {index === 2 && <span className="inline-block w-2 h-2 rounded-full bg-orange-400" />}
+                      {index > 2 && <span className="inline-block w-2 h-2 rounded-full bg-gray-400" />}
                       {card.title}
                     </h4>
                     {card.description && (

@@ -8,6 +8,14 @@ import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
 import DropdownMenu from "./ui/DropdownMenu";
 
+// Створюємо мапінг, щоб Tailwind бачив повні імена класів
+const colorMap: { [key: number]: string } = {
+  0: 'bg-blue-400',
+  1: 'bg-green-400',
+  2: 'bg-orange-400',
+};
+const defaultColor = 'bg-gray-400';
+
 export default function CardComponent({
                                         card,
                                         index,
@@ -56,18 +64,9 @@ export default function CardComponent({
       setIsDeleting(false);
     }
   };
- const getColumnColorClass = (index: number) => {
-   switch (index) {
-     case 0:
-       return 'bg-blue-400';
-     case 1:
-       return 'bg-green-400';
-     case 2:
-       return 'bg-orange-400';
-     default:
-       return 'bg-gray-400';
-   }
- };
+
+  // Цю функцію ми більше не використовуємо, її можна видалити
+  // const getColumnColorClass = ...
 
   return (
     <>
@@ -119,7 +118,8 @@ export default function CardComponent({
                   <div>
                     <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
                      <span
-                       className={`inline-block w-2 h-2 rounded-full ${getColumnColorClass(index)}`}
+                       // ВИПРАВЛЕНО: Використовуємо мапінг, а не функцію
+                       className={`inline-block w-2 h-2 rounded-full ${colorMap[index] || defaultColor}`}
                      />
                       {card.title}
                     </h4>

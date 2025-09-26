@@ -8,6 +8,13 @@ import CardComponent from './Card';
 import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
 
+const headerColorMap: { [key: number]: string } = {
+  0: 'text-red-200',
+  1: 'text-green-600',
+  2: 'text-blue-200',
+};
+const defaultHeaderColor = 'text-gray-800';
+
 export default function ColumnComponent({
                                           column,
                                           boardId,
@@ -29,11 +36,8 @@ export default function ColumnComponent({
   const [newCardDescription, setNewCardDescription] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
   const [localTitle, setLocalTitle] = useState(column.title);
 
-  const colors = ['text-red-200', 'text-green-600', 'text-blue-200'];
-  const headerColor = colors[index % colors.length];
 
   const handleEditColumn = async () => {
     try {
@@ -84,7 +88,7 @@ export default function ColumnComponent({
     <div className={`p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col 
     max-w-full sm:min-w-[250px] sm:max-w-[200px] flex-shrink-0 xs:w-[30vw] sm:w-auto`}>
       <div className="flex justify-between items-center mb-2">
-        <h3 className={`text-base ${headerColor} sm:text-lg font-semibold`}>{localTitle}</h3>
+        <h3 className={`text-base ${headerColorMap[index % 3] || defaultHeaderColor} sm:text-lg font-semibold`}>{localTitle}</h3>
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditModalOpen(true)}
@@ -133,7 +137,7 @@ export default function ColumnComponent({
       </Droppable>
 
       {isAddingCard ? (
-     <form onSubmit={handleCreateCard} className="space-y-2 mt-2 ">
+        <form onSubmit={handleCreateCard} className="space-y-2 mt-2 ">
           <Input
             type="text"
             value={newCardTitle}

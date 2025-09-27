@@ -7,6 +7,7 @@ import {createCard, updateColumn} from '../lib/api';
 import CardComponent from './Card';
 import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
+import DropdownMenu from "./ui/DropdownMenu";
 
 const headerColorMap: { [key: number]: string } = {
   0: 'text-orange-200',
@@ -86,22 +87,14 @@ export default function ColumnComponent({
 
   return (
     <div className={`p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col 
-    max-w-full sm:min-w-[250px] sm:max-w-[200px] flex-shrink-0 xs:w-[30vw] sm:w-auto`}>
+    max-w-full  sm:min-w-[300px] flex-shrink-0  sm:w-[250px] overflow-x-hidden`}>
       <div className="flex justify-between items-center mb-2">
-        <h3 className={`text-base ${headerColorMap[index % 3] || defaultHeaderColor} sm:text-lg font-semibold`}>{localTitle}</h3>
+        <h3 className={`text-base ${headerColorMap[index % 3] || defaultHeaderColor} `}>{localTitle}</h3>
         <div className="flex gap-2">
-          <button
-            onClick={() => setIsEditModalOpen(true)}
-            className="text-grey-200 hover:text-yellow-900 transition text-xs sm:text-base"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => setShowDeleteModal(true)}
-            className="hover:text-red-700 transition text-xs sm:text-base"
-          >
-            Delete
-          </button>
+          <DropdownMenu
+            onEdit={() => setIsEditModalOpen(true)}
+            onDelete={() => setShowDeleteModal(true)}
+          />
         </div>
       </div>
       <Droppable droppableId={String(column.id)}>
@@ -137,13 +130,13 @@ export default function ColumnComponent({
       </Droppable>
 
       {isAddingCard ? (
-        <form onSubmit={handleCreateCard} className="space-y-2 mt-2 ">
+    <form onSubmit={handleCreateCard} className="space-y-2 mt-2 bg-red-50 ">
           <Input
             type="text"
             value={newCardTitle}
             onChange={(e) => setNewCardTitle(e.target.value)}
             placeholder="Card title"
-            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
+            className="border border-gray-300 rounded-md p-1 text-xs sm:text-base"
             required
             disabled={isCreatingCard}
           />
@@ -231,6 +224,6 @@ export default function ColumnComponent({
           </div>
         </Modal>
       )}
-    </div>
+     </div>
   );
 }

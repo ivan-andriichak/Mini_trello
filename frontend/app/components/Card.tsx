@@ -105,7 +105,7 @@ export default function CardComponent({
               <div>
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
+                    <h4 className=" flex items-center gap-2 text-xs sm:text-base">
                       {columnIndex === 2 && <span className="inline-block w-2 h-2 rounded-full bg-blue-200" />}
                       {columnIndex === 0 && <span className="inline-block w-2 h-2 rounded-full bg-orange-300" />}
                       {columnIndex === 1 && <span className="inline-block w-2 h-2 rounded-full bg-green-500" />}

@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini-Trello 📝
 
-## Getting Started
+Welcome to Mini-Trello! This is a simplified yet full-featured clone of the popular Trello service, created to demonstrate full-stack development skills. The project allows users to create boards, columns, and cards to organize their tasks, with complete drag-and-drop functionality.
 
-First, run the development server:
+**✨ [Live Demo Link](https://mini-trello-amber.vercel.app/) ✨**
+
+*(Note: Don't forget to replace the link if you change it.)*
+
+*(Tip: Take a nice screenshot of your application, upload it to a site like [Imgur](https://imgur.com/upload), and paste the link here)*
+
+---
+
+## 🚀 Key Features
+
+*   **User Authentication:** A complete registration and login system.
+*   **Session Management:** Secure authentication based on JWT (JSON Web Tokens) using `httpOnly` cookies.
+*   **Board CRUD:** Create, view, edit, and delete your project boards.
+*   **Column CRUD:** Within each board, you can create, edit, and delete columns.
+*   **Card CRUD:** Add, edit, and delete tasks in the form of cards.
+*   **Drag & Drop:**
+    *   Easily drag cards between columns and change their order.
+    *   Reorder boards on the main page.
+*   **Responsive Design:** The interface displays correctly on both desktop and mobile devices.
+
+---
+
+## 🛠️ Technology Stack
+
+The project is built on a modern and powerful technology stack:
+
+### Frontend
+
+*   **Framework:** [Next.js](https://nextjs.org/) (App Router)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Drag & Drop:** [`@hello-pangea/dnd`](https://github.com/hello-pangea/dnd)
+*   **API Client:** [Axios](https://axios-http.com/)
+
+### Backend
+
+*   **Framework:** [NestJS](https://nestjs.com/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **ORM:** [Prisma](https://www.prisma.io/)
+*   **Database:** [PostgreSQL](https://www.postgresql.org/)
+*   **Authentication:** [Passport.js](http://www.passportjs.org/) (JWT Strategy)
+
+### Deployment
+
+*   **Frontend:** [Vercel](https://vercel.com/)
+*   **Backend:** [Render](https://render.com/)
+
+---
+
+## ⚙️ Running the Project Locally
+
+To run this project on your local machine, follow these steps.
+
+### Prerequisites
+
+*   [Node.js](https://nodejs.org/en/) (version 18 or higher)
+*   [Git](https://git-scm.com/)
+*   A running instance of PostgreSQL
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ivan-andriichak/Mini_trello.git
+cd Mini_trello
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set Up and Run the Backend
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  Navigate to the backend folder and install the dependencies:
+    ```bash
+    cd backend
+    npm install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  Create a `.env` file in the `backend` folder and add the connection string for your local PostgreSQL database:
+    ```env
+    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
+    ```
+    *(Replace `USER`, `PASSWORD`, and other parameters with your own.)*
 
-## Learn More
+3.  Apply the database migrations:
+    ```bash
+    npx prisma migrate dev
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+4.  Start the development server:
+    ```bash
+    npm run start:dev
+    ```
+    The backend will be available at `http://localhost:5000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Set Up and Run the Frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  Open a new terminal, navigate to the frontend folder, and install the dependencies:
+    ```bash
+    cd frontend
+    npm install
+    ```
 
-## Deploy on Vercel
+2.  Create a `.env.local` file in the `frontend` folder and specify the URL of your local backend:
+    ```env
+    NEXT_PUBLIC_API_URL=http://localhost:5000
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+    The frontend will be available at `http://localhost:3000`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Now you can open `http://localhost:3000` in your browser and start using the application!

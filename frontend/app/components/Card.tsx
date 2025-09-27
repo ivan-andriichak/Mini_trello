@@ -103,17 +103,23 @@ export default function CardComponent({
                 </form>
               </Modal>
             ) : (
-              <div className="flex justify-between items-start">
-                <div className="flex items-start gap-2 pr-2">
-                  <span className="mt-1.5 flex-shrink-0">
-                    {columnIndex === 0 && <span className="block w-2 h-2 rounded-full bg-orange-300" />}
-                    {columnIndex === 1 && <span className="block w-2 h-2 rounded-full bg-green-500" />}
-                    {columnIndex === 2 && <span className="block w-2 h-2 rounded-full bg-blue-200" />}
-                    {columnIndex > 2 && <span className="block w-2 h-2 rounded-full bg-gray-400" />}
-                  </span>
-                  <p className="text-xs sm:text-sm text-gray-800 break-words">{card.title}</p>
+              <div className="flex justify-between items-start w-full">
+                <div className="flex-grow pr-2">
+                  <div className="flex items-start gap-2">
+                    <span className="mt-1.5 flex-shrink-0">
+                      {columnIndex === 0 && <span className="block w-2 h-2 rounded-full bg-orange-300" />}
+                      {columnIndex === 1 && <span className="block w-2 h-2 rounded-full bg-green-500" />}
+                      {columnIndex === 2 && <span className="block w-2 h-2 rounded-full bg-blue-200" />}
+                      {columnIndex > 2 && <span className="block w-2 h-2 rounded-full bg-gray-400" />}
+                    </span>
+                    <p className="text-xs sm:text-sm text-gray-800 break-words">{card.title}</p>
+                  </div>
+                  {card.description && (
+                    <p className="mt-1 pl-4 text-xs text-gray-600 break-words">{card.description}</p>
+                  )}
                 </div>
-                <div>
+
+                <div className="flex-shrink-0">
                   <DropdownMenu
                     onEdit={() => setIsEditing(true)}
                     onDelete={() => setShowDeleteModal(true)}

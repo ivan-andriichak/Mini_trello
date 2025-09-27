@@ -4,9 +4,8 @@ Welcome to Mini-Trello! This is a simplified yet full-featured clone of the popu
 
 **✨ [Live Demo Link](https://mini-trello-amber.vercel.app/) ✨**
 
-*(Note: Don't forget to replace the link if you change it.)*
 
-*(Tip: Take a nice screenshot of your application, upload it to a site like [Imgur](https://imgur.com/upload), and paste the link here)*
+* [Postimages](https://postimg.cc/gallery/3DFWbxX)*
 
 ---
 
@@ -76,11 +75,23 @@ cd Mini_trello
     npm install
     ```
 
-2.  Create a `.env` file in the `backend` folder and add the connection string for your local PostgreSQL database:
+2.  Create a `.env` file in the `backend` folder with the following content:
+
     ```env
-    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_NAME"
+    POSTGRES_USER=
+    POSTGRES_PASSWORD=
+    POSTGRES_DB=
+    HOST=localhost
+
+    DATABASE_URL="postgresql://postg:user@localhost:5432/trello_db"
+
+    JWT_SECRET="tftyhi2ghk"
+    NODE_ENV=development
+
+    PORT=5000
     ```
-    *(Replace `USER`, `PASSWORD`, and other parameters with your own.)*
+    
+    \*This file contains all necessary environment variables for local development: PostgreSQL credentials, connection URL, JWT secret, environment, and server port. Adjust values as needed for your setup.*
 
 3.  Apply the database migrations:
     ```bash
@@ -101,12 +112,7 @@ cd Mini_trello
     npm install
     ```
 
-2.  Create a `.env.local` file in the `frontend` folder and specify the URL of your local backend:
-    ```env
-    NEXT_PUBLIC_API_URL=http://localhost:5000
-    ```
-
-3.  Start the development server:
+2.  Start the development server:
     ```bash
     npm run dev
     ```

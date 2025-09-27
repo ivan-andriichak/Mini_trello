@@ -86,7 +86,7 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className="w-[280px] rounded-xl bg-gray-100/80 shadow-md flex flex-col flex-shrink-0 ">
+   <div className="w-[230px] sm:w-[230px] rounded-xl bg-gray-100/80 shadow-md flex flex-col flex-shrink-0 ">
       <div className="p-3 flex justify-between items-center">
         <h3 className={`font-semibold text-sm sm:text-base ${headerColorMap[index % 3] || defaultHeaderColor}`}>{localTitle}</h3>
         <DropdownMenu

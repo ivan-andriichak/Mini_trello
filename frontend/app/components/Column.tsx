@@ -10,11 +10,11 @@ import {Input} from "./ui/Input";
 import DropdownMenu from "./ui/DropdownMenu";
 
 const headerColorMap: { [key: number]: string } = {
-  0: 'text-orange-200',
-  1: 'text-green-600',
+  0: 'text-orange-300',
+  1: 'text-green-500',
   2: 'text-blue-200',
 };
-const defaultHeaderColor = 'text-gray-800';
+const defaultHeaderColor = 'text-gray-700';
 
 export default function ColumnComponent({
                                           column,
@@ -86,95 +86,91 @@ export default function ColumnComponent({
   };
 
   return (
-    <div className={`p-2 sm:p-4 rounded-xl border border-gray-200 shadow-md flex flex-col 
-    max-w-full  sm:min-w-[300px] flex-shrink-0  sm:w-[250px] overflow-x-hidden`}>
-      <div className="flex justify-between items-center mb-2">
-        <h3 className={`text-base ${headerColorMap[index % 3] || defaultHeaderColor} `}>{localTitle}</h3>
-        <div className="flex gap-2">
-          <DropdownMenu
-            onEdit={() => setIsEditModalOpen(true)}
-            onDelete={() => setShowDeleteModal(true)}
-          />
-        </div>
+    <div className="w-[280px] rounded-xl bg-gray-100/80 shadow-md flex flex-col flex-shrink-0 ">
+      <div className="p-3 flex justify-between items-center">
+        <h3 className={`font-semibold text-sm sm:text-base ${headerColorMap[index % 3] || defaultHeaderColor}`}>{localTitle}</h3>
+        <DropdownMenu
+          onEdit={() => setIsEditModalOpen(true)}
+          onDelete={() => setShowDeleteModal(true)}
+        />
       </div>
-      <Droppable droppableId={String(column.id)}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            className={
-              "space-y-2 mb-2 overflow-y-auto overflow-x-hidden max-h-[360px] sm:max-h-[550px] transition-all scrollbar-thin scrollbar-thumb-gray-300 " +
-              (snapshot.isDraggingOver ? "bg-blue-100" : "")
-            }
-          >
-            {(column.cards || []).length === 0 && (
-              <div className="text-center text-gray-400 py-8 italic opacity-70 text-xs sm:text-base">
-                No cards yet
-              </div>
-            )}
-            {(column.cards || []).map((card, cardIndex) => (
-              <CardComponent
-                key={card.id}
-                card={card}
-                index={cardIndex}
-                columnIndex={index}
-                boardId={boardId}
-                onDelete={() => onRefresh?.()}
-                onUpdate={() => onRefresh?.()}
-              />
-            ))}
-            <br />
-            <div className="mb-8">{provided.placeholder}</div>
-          </div>
-        )}
-      </Droppable>
+      <div className="px-3 pb-6 flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 ">
+        <Droppable droppableId={String(column.id)}>
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={`space-y-2 min-h-[40px] transition-colors duration-200 rounded-lg ${snapshot.isDraggingOver ? "bg-blue-100" : ""}`}
+            >
+              {(column.cards || []).length === 0 && !isAddingCard && (
+                <div className="text-center text-gray-400 pt-8 pb-4 italic opacity-70 text-sm">
+                  No cards yet
+                </div>
+              )}
+              {(column.cards || []).map((card, cardIndex) => (
+                <CardComponent
+                  key={card.id}
+                  card={card}
+                  index={cardIndex}
+                  columnIndex={index}
+                  boardId={boardId}
+                  onDelete={() => onRefresh?.()}
+                  onUpdate={() => onRefresh?.()}
+                />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
 
-      {isAddingCard ? (
-    <form onSubmit={handleCreateCard} className="space-y-2 mt-2 bg-red-50 ">
-          <Input
-            type="text"
-            value={newCardTitle}
-            onChange={(e) => setNewCardTitle(e.target.value)}
-            placeholder="Card title"
-            className="border border-gray-300 rounded-md p-1 text-xs sm:text-base"
-            required
-            disabled={isCreatingCard}
-          />
-          <Input
-            type="text"
-            value={newCardDescription}
-            onChange={(e) => setNewCardDescription(e.target.value)}
-            placeholder="Card description (optional)"
-            className="w-full border border-gray-300 rounded-md p-1 text-xs sm:text-base"
-            disabled={isCreatingCard}
-          />
-          <div className="flex gap-2">
-            <button
-              type="submit"
+        {isAddingCard ? (
+          <form onSubmit={handleCreateCard} className="space-y-2 mt-2">
+            <Input
+              type="text"
+              value={newCardTitle}
+              onChange={(e) => setNewCardTitle(e.target.value)}
+              placeholder="Card title"
+              className="p-2 text-xs sm:text-sm"
+              required
+              autoFocus
               disabled={isCreatingCard}
-              className="bg-blue-400 text-white p-0.5 rounded-md text-xs sm:text-base"
-            >
-              {isCreatingCard ? 'Creating...' : 'Add Card'}
-            </button>
-            <button
-              type="button"
-              className="bg-gray-200 text-gray-700 p-0.5 rounded-md hover:bg-gray-300 text-xs sm:text-base"
-              onClick={() => setIsAddingCard(false)}
+            />
+            <textarea
+              value={newCardDescription}
+              onChange={(e) => setNewCardDescription(e.target.value)}
+              placeholder="Card description (optional)"
+              className="w-full border border-gray-300 rounded-md p-2 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-blue-400 transition"
+              rows={3}
               disabled={isCreatingCard}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      ) : (
-        <button
-          type="button"
-          className="bg-blue-100 text-white p-1 rounded-md hover:bg-blue-400 mt-2 w-full text-xs sm:text-base "
-          onClick={() => setIsAddingCard(true)}
-        >
-          + Add Card
-        </button>
-      )}
+            />
+            <div className="flex gap-2">
+              <button
+                type="submit"
+                disabled={isCreatingCard}
+                className="bg-blue-500 text-white px-3 py-1 rounded-md text-xs sm:text-sm hover:bg-blue-600 disabled:opacity-50"
+              >
+                {isCreatingCard ? 'Creating...' : 'Add Card'}
+              </button>
+              <button
+                type="button"
+                className="bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300 text-xs sm:text-sm"
+                onClick={() => setIsAddingCard(false)}
+                disabled={isCreatingCard}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        ) : (
+          <button
+            type="button"
+            className="text-gray-500 p-2 rounded-md hover:bg-gray-200 mt-2 w-full text-left text-xs sm:text-sm"
+            onClick={() => setIsAddingCard(true)}
+          >
+            + Add a card
+          </button>
+        )}
+      </div>
 
       <Modal open={showDeleteModal} title="Delete Column?" onClose={() => setShowDeleteModal(false)}>
         <p className="mb-4">Are you sure you want to delete this column and all its cards?</p>
@@ -195,35 +191,33 @@ export default function ColumnComponent({
         </div>
       </Modal>
 
-      {isEditModalOpen && (
-        <Modal open={isEditModalOpen} title="Edit Column" onClose={() => setIsEditModalOpen(false)}>
-          <div className="mb-4">
-            <input
-              type="text"
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-2"
-              placeholder="Column title"
-            />
-          </div>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              className="bg-blue-400 text-white p-2 rounded-md"
-              onClick={handleEditColumn}
-            >
-              Save
-            </button>
-            <button
-              type="button"
-              className="bg-gray-200  p-2 rounded-md hover:bg-gray-300"
-              onClick={() => setIsEditModalOpen(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </Modal>
-      )}
-     </div>
+      <Modal open={isEditModalOpen} title="Edit Column" onClose={() => setIsEditModalOpen(false)}>
+        <div className="mb-4">
+          <Input
+            type="text"
+            value={editTitle}
+            onChange={(e) => setEditTitle(e.target.value)}
+            className="w-full"
+            placeholder="Column title"
+          />
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md "
+            onClick={handleEditColumn}
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            className="bg-gray-200 px-4 py-2 rounded-md hover:bg-gray-300"
+            onClick={() => setIsEditModalOpen(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </Modal>
+    </div>
   );
 }

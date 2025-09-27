@@ -11,15 +11,15 @@ import DropdownMenu from "./ui/DropdownMenu";
 export default function CardComponent({
                                         card,
                                         index,
+                                        columnIndex,
                                         boardId,
-                                        columnId,
                                         onDelete,
                                         onUpdate,
                                       }: {
   card: Card;
   index: number;
+  columnIndex: number;
   boardId: number;
-  columnId: number;
   onDelete?: (cardId: number) => void;
   onUpdate?: (updatedCard: Card) => void;
 }) {
@@ -106,10 +106,10 @@ export default function CardComponent({
                 <div className="flex justify-between items-start">
                   <div>
                     <h4 className="font-semibold flex items-center gap-2 text-xs sm:text-base">
-                      {index === 0 && <span className="inline-block w-2 h-2 rounded-full bg-blue-400" />}
-                      {index === 1 && <span className="inline-block w-2 h-2 rounded-full bg-green-400" />}
-                      {index === 2 && <span className="inline-block w-2 h-2 rounded-full bg-orange-400" />}
-                      {index > 2 && <span className="inline-block w-2 h-2 rounded-full bg-gray-400" />}
+                      {columnIndex === 0 && <span className="inline-block w-2 h-2 rounded-full bg-blue-400" />}
+                      {columnIndex === 1 && <span className="inline-block w-2 h-2 rounded-full bg-green-400" />}
+                      {columnIndex === 2 && <span className="inline-block w-2 h-2 rounded-full bg-orange-400" />}
+                      {columnIndex > 2 && <span className="inline-block w-2 h-2 rounded-full bg-gray-400" />}
                       {card.title}
                     </h4>
                     {card.description && (

@@ -20,7 +20,7 @@ export default function ColumnComponent({
                                           boardId,
                                           onDelete,
                                           onRefresh,
-                                          index,
+                                          index, // Це індекс колонки, який нам потрібен
                                         }: {
   column: ColumnType;
   boardId: number;
@@ -119,17 +119,19 @@ export default function ColumnComponent({
                 No cards yet
               </div>
             )}
-            {(column.cards || []).map((card, index) => (
+            {/* --- ПОЧАТОК ЗМІН --- */}
+            {(column.cards || []).map((card, cardIndex) => (
               <CardComponent
                 key={card.id}
                 card={card}
-                index={index}
+                index={cardIndex}
+                columnIndex={index}
                 boardId={boardId}
-                columnId={column.id}
                 onDelete={() => onRefresh?.()}
                 onUpdate={() => onRefresh?.()}
               />
             ))}
+            {/* --- КІНЕЦЬ ЗМІН --- */}
             <br />
             <div className="mb-8">{provided.placeholder}</div>
           </div>

@@ -9,7 +9,7 @@ import Modal from "./ui/Modal";
 import {Input} from "./ui/Input";
 
 const headerColorMap: { [key: number]: string } = {
-  0: 'text-red-200',
+  0: 'text-orange-200',
   1: 'text-green-600',
   2: 'text-blue-200',
 };
@@ -20,7 +20,7 @@ export default function ColumnComponent({
                                           boardId,
                                           onDelete,
                                           onRefresh,
-                                          index, // Це індекс колонки, який нам потрібен
+                                          index,
                                         }: {
   column: ColumnType;
   boardId: number;
@@ -119,7 +119,6 @@ export default function ColumnComponent({
                 No cards yet
               </div>
             )}
-            {/* --- ПОЧАТОК ЗМІН --- */}
             {(column.cards || []).map((card, cardIndex) => (
               <CardComponent
                 key={card.id}
@@ -131,7 +130,6 @@ export default function ColumnComponent({
                 onUpdate={() => onRefresh?.()}
               />
             ))}
-            {/* --- КІНЕЦЬ ЗМІН --- */}
             <br />
             <div className="mb-8">{provided.placeholder}</div>
           </div>
